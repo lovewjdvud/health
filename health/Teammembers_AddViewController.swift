@@ -107,7 +107,7 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             print("\(id_member)")
             print("\(name_member)")
             print("\(img_member)")
-            print("\(index_member)")
+            print("\(index_down)")
          
             ADD_controlle.add_id = id_member
             ADD_controlle.add_name = id_member
@@ -116,6 +116,8 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             
       //      delegate2?.didMessageEditDone3(self, id_protocol: id_member, name_protocol: name_member, img_protocol: img_member)
             navigationController?.popViewController(animated: true) // 화면 보내는 친구
+          
+            //  navigationController?.popViewController(animated: true) // 화면 보내는 친구
        
         
         
@@ -257,6 +259,7 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         let item: DBModel = FollowlistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
         
      
+   
      
      
         DispatchQueue.global().async {
@@ -279,7 +282,24 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         cell.invite_name = "\(item.u_name!)"
         cell.invite_img = "\(item.u_img!)"
       
-      
+        invite_confirm = false
+        if index_member.count > 0 {
+             print("\(indexPath.row) 인덱스 숫자")
+
+           print("\(index_member) 리스트 인덱스")
+            for i in index_member {
+                print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) ")
+                if i == indexPath.row{
+                    invite_confirm = true
+                    
+//                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
+                }
+//
+            }
+            
+        }
+        
+        
         return cell
     
     }// 테이블 뷰

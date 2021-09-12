@@ -14,12 +14,11 @@ var name_member = [Int : String]()
 var img_member = [Int : String]()
 var index_member: [Int] = []
 var index_down = index_member.sorted(by: <)
-
-
+var invite_confirm = false
 
 
 protocol C_FollowProductCellDelegate {
-    func btn_invite(index: Int ,invite_id: String,invite_name: String,invite_img: String)
+    func selectedInfoBtn(index2: Int)
 }
 
 
@@ -33,14 +32,15 @@ class C_FollowTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btn_invite: UIButton!
     var delegate2: EditDelegate?
-   
+    var delegate: C_FollowProductCellDelegate?
+    var index2: Int = 0
     var index: Int!
     
     // 클릭시 받아 온값
     var invite_id = ""
     var invite_name = ""
     var invite_img = ""
-    var invite_confirm = false
+  
     var test_C = B_GFollowlist()
     // 클릭시 넣을 값
     var invite_id_array: [String] = []
@@ -50,7 +50,7 @@ class C_FollowTableViewCell: UITableViewCell {
 
 
 
-    var delegate: C_FollowProductCellDelegate?
+   
     
     
     
@@ -64,7 +64,13 @@ class C_FollowTableViewCell: UITableViewCell {
         imgview_profileimg.clipsToBounds = true
         
       
+        if invite_confirm {
         
+            UIView.animate(withDuration: 0.2) { [self] in
+                btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
+                                         }
+    
+        }
       //  setupMiddleButton()
     }
     
@@ -87,22 +93,32 @@ class C_FollowTableViewCell: UITableViewCell {
     }
     
     
+    @IBAction func selectedInfoBtn(_ sender: Any) {
+        
+        self.delegate?.selectedInfoBtn(index2: index2)
+     
+    }
     // 초대 버튼
     @IBAction func btn_invite(_ sender: UIButton) {
        
-       // self.delegate?.btn_invite(index: index, invite_id: invite_id, invite_name: invite_name, invite_img: invite_img)
-       
+      
+//        UIView.animate(withDuration: 0.2) {
+//            sender.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
+//               }
         if invite_confirm == false {
 
             id_member.updateValue("\(invite_id)", forKey: index)
             name_member.updateValue("\(invite_name)", forKey: index)
             img_member.updateValue("\(invite_img)", forKey: index)
             index_member.append(index)
+            
+            
+            
             print("\(invite_id) 여기는 팔로우팀")
          
             
             
-            invite_confirm = true // 다시 바꿔주기
+          //  invite_confirm = true // 다시 바꿔주기
             
         } else if invite_confirm == true {
             id_member.removeValue(forKey: index)
@@ -111,7 +127,7 @@ class C_FollowTableViewCell: UITableViewCell {
          
             print("해제")
             
-            invite_confirm = false // 다시 바꿔주기
+            //invite_confirm = false // 다시 바꿔주기
         }
         
      

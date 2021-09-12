@@ -111,7 +111,7 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
     
-        return id_member.count
+        return index_member.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,7 +124,7 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
        
         cell.lbl_id_memberAdd.text? = "\(id_member[numBer] ?? "dd")"
         cell.lbl_name_memberAdd.text? = "\(name_member[numBer] ?? "실패")"
-
+        print("\(id_member[numBer] ?? "dd")sss")
      
 //
         DispatchQueue.global().async {
