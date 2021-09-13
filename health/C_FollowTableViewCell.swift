@@ -14,7 +14,7 @@ var name_member = [Int : String]()
 var img_member = [Int : String]()
 var index_member: [Int] = []
 var index_down = index_member.sorted(by: <)
-var invite_confirm = false
+
 
 
 protocol C_FollowProductCellDelegate {
@@ -25,7 +25,7 @@ protocol C_FollowProductCellDelegate {
 class C_FollowTableViewCell: UITableViewCell {
 
   
-   
+    var invite_confirm = false
     @IBOutlet weak var imgview_profileimg: UIImageView!
     @IBOutlet weak var lbl_idprofile: UILabel!
     @IBOutlet weak var lbl_nameprofile: UILabel!
@@ -56,13 +56,13 @@ class C_FollowTableViewCell: UITableViewCell {
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
         
-      
-        if invite_confirm {
-        
-            UIView.animate(withDuration: 0.2) { [self] in
-                btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
-                                         }
-        }
+//      
+//        if invite_confirm {
+//        
+//            UIView.animate(withDuration: 0.2) { [self] in
+//                btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
+//                                         }
+//        }
       //  setupMiddleButton()
     }
     
@@ -81,11 +81,7 @@ class C_FollowTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func selectedInfoBtn(_ sender: Any) {
-        
-        self.delegate?.selectedInfoBtn(index2: index2)
-     
-    }
+
     // 초대 버튼
     @IBAction func btn_invite(_ sender: UIButton) {
        
@@ -106,7 +102,7 @@ class C_FollowTableViewCell: UITableViewCell {
          
             
             
-          //  invite_confirm = true // 다시 바꿔주기
+            invite_confirm = true // 다시 바꿔주기
             
         } else if invite_confirm == true {
             id_member.removeValue(forKey: index)
@@ -115,7 +111,7 @@ class C_FollowTableViewCell: UITableViewCell {
          
             print("해제")
             
-            //invite_confirm = false // 다시 바꿔주기
+            invite_confirm = false // 다시 바꿔주기
         }
         
      

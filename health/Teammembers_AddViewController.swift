@@ -281,24 +281,24 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         cell.invite_id = "\(item.u_id!)"
         cell.invite_name = "\(item.u_name!)"
         cell.invite_img = "\(item.u_img!)"
-      
-        invite_confirm = false
-        if index_member.count > 0 {
-             print("\(indexPath.row) 인덱스 숫자")
-
-           print("\(index_member) 리스트 인덱스")
-            for i in index_member {
-                print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) ")
-                if i == indexPath.row{
-                    invite_confirm = true
-                    
-//                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
-                }
 //
-            }
-            
-        }
-        
+//        invite_confirm = false
+//        if index_member.count > 0 {
+//             print("\(indexPath.row) 인덱스 숫자")
+//
+//           print("\(index_member) 리스트 인덱스")
+//            for i in index_member {
+//                print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) ")
+//                if i == indexPath.row{
+//                    invite_confirm = true
+//
+////                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
+//                }
+////
+//            }
+//
+//        }
+//
         
         return cell
     

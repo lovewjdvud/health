@@ -111,7 +111,7 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
     
-        return index_member.count
+        return id_member.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,13 +122,13 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
         let numBer = index_down[indexPath.row]
  
        
-        cell.lbl_id_memberAdd.text? = "\(id_member[numBer] ?? "dd")"
-        cell.lbl_name_memberAdd.text? = "\(name_member[numBer] ?? "실패")"
+        cell.lbl_id_memberAdd.text? = "\(id_member[ index_down[indexPath.row]] ?? "dd")"
+        cell.lbl_name_memberAdd.text? = "\(name_member[ index_down[indexPath.row]] ?? "실패")"
         print("\(id_member[numBer] ?? "dd")sss")
      
 //
         DispatchQueue.global().async {
-            guard let url = URL(string: "\(Share.imgurl)\(img_member[numBer] ?? "실패")") else { return }
+            guard let url = URL(string: "\(Share.imgurl)\(img_member[ index_down[indexPath.row]] ?? "실패")") else { return }
             print("\(url)")
 
             guard let data = try? Data(contentsOf: url) else {
