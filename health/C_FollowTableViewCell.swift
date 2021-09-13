@@ -47,13 +47,6 @@ class C_FollowTableViewCell: UITableViewCell {
     var invite_name_array: [String] = []
     var invite_img_array: [String] = []
     
-
-
-
-   
-    
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,15 +62,10 @@ class C_FollowTableViewCell: UITableViewCell {
             UIView.animate(withDuration: 0.2) { [self] in
                 btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
                                          }
-    
         }
       //  setupMiddleButton()
     }
     
-    
-    
-    
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
