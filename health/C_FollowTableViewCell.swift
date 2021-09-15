@@ -8,24 +8,25 @@
 import UIKit
 import Foundation
 
+var check_member = [Int :  Bool]()
 var test = [Int : String]()
 var id_member = [Int :  String]()
 var name_member = [Int : String]()
 var img_member = [Int : String]()
 var index_member: [Int] = []
-var index_down = index_member.sorted(by: <)
+var index_down: [Int] = []
+//index_member.sorted(by: <)
 
 
 
 protocol C_FollowProductCellDelegate {
-    func selectedInfoBtn(index2: Int)
+    func btn_invite(index: Int ,invite_id: String, invite_name: String,invite_img: String)
 }
 
 
 class C_FollowTableViewCell: UITableViewCell {
 
   
-    var invite_confirm = false
     @IBOutlet weak var imgview_profileimg: UIImageView!
     @IBOutlet weak var lbl_idprofile: UILabel!
     @IBOutlet weak var lbl_nameprofile: UILabel!
@@ -35,6 +36,7 @@ class C_FollowTableViewCell: UITableViewCell {
     var delegate: C_FollowProductCellDelegate?
     var index2: Int = 0
     var index: Int!
+ 
     
     // 클릭시 받아 온값
     var invite_id = ""
@@ -46,7 +48,9 @@ class C_FollowTableViewCell: UITableViewCell {
     var invite_id_array: [String] = []
     var invite_name_array: [String] = []
     var invite_img_array: [String] = []
-    
+   
+    var invite_confirm = false
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,9 +60,23 @@ class C_FollowTableViewCell: UITableViewCell {
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
         
-//      
+       // print("시바 \(invite_confirm)")
+        print("시바 인덱스 \(index!)")
+        
+        
+        if check_member.count == 0 {
+            
+        } else if check_member[index] == true {
+                      
+            UIView.animate(withDuration: 0.2) { [self] in
+                            btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
+                                                     }
+                    
+        }
+        
+//
 //        if invite_confirm {
-//        
+//        print("시바새꺄")
 //            UIView.animate(withDuration: 0.2) { [self] in
 //                btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
 //                                         }
@@ -84,33 +102,53 @@ class C_FollowTableViewCell: UITableViewCell {
 
     // 초대 버튼
     @IBAction func btn_invite(_ sender: UIButton) {
-       
+        self.delegate?.btn_invite(index: index, invite_id: invite_id, invite_name: invite_name, invite_img: invite_img)
       
 //        UIView.animate(withDuration: 0.2) {
 //            sender.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
 //               }
-        if invite_confirm == false {
+        
+        //check_member[index] == false
+        
+        if check_member[index] == false {
 
+            print("\(index!) 흠 \(invite_name)")
             id_member.updateValue("\(invite_id)", forKey: index)
             name_member.updateValue("\(invite_name)", forKey: index)
             img_member.updateValue("\(invite_img)", forKey: index)
             index_member.append(index)
+            index_down = index_member.sorted(by: <)
             
-            
-            
-            print("\(invite_id) 여기는 팔로우팀")
+         
+            print("\(id_member) 셀 추가")
+            print("\(name_member) 셀 추가")
+            print("\(img_member) 셀 추가")
+            print("\(index_down) 셀 추가")
+            print("\(index_member) 셀 추가")
+            print("\(invite_id) 여기는 추가")
          
             
-            
-            invite_confirm = true // 다시 바꿔주기
+            check_member.updateValue(true, forKey: index)
+             invite_confirm = true // 다시 바꿔주기
             
         } else if invite_confirm == true {
             id_member.removeValue(forKey: index)
             name_member.removeValue(forKey: index)
             img_member.removeValue(forKey: index)
-         
+          //index_member.firstIndex(of: 3)
+            index_member.remove(at: index_member.firstIndex(of: index)!)
+            index_down = index_member.sorted(by: <)
+//          index_down.remove(at: index)
             print("해제")
             
+            print("\(id_member) 셀 삭제")
+            print("\(name_member) 셀 삭제")
+            print("\(img_member) 셀 삭제")
+            print("\(index_down) 인덱스 다윤 셀 삭제")
+            print("\(index_member) 인덱스 멤버 셀 삭제")
+            
+            print("\(index!) 셀 삭제")
+            check_member.updateValue(false, forKey: index)
             invite_confirm = false // 다시 바꿔주기
         }
         
@@ -126,17 +164,17 @@ class C_FollowTableViewCell: UITableViewCell {
 
 
 //cell 안에 있는 버튼 이벤트 처리 방법
-//extension C_FollowTableViewCell: AddGroupProticol{
-//
-//    func btn_add_invite2(index: Int ,invite_id: String, invite_name: String,invite_img: String) {
-//
-//    }
-//}
-//
-//extension C_FollowTableViewCell: AddGroupProticol2{
-//
-//    func btn_add_invite(test1: Int, test2: String, test3: String, test4: String) {
-//
-//    }
-//
-//}
+extension C_FollowTableViewCell: AddGroupProticol{
+
+    func btn_add_invite2(index: Int ,invite_id: String, invite_name: String,invite_img: String) {
+
+    }
+}
+
+extension C_FollowTableViewCell: AddGroupProticol2{
+
+    func btn_add_invite(test1: Int, test2: String, test3: String, test4: String) {
+
+    }
+
+}

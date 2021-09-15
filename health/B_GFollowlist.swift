@@ -36,7 +36,7 @@ class B_GFollowlist: UIButton {
     
     @objc fileprivate func onBtnClicked(_ sender: UIButton){
       
-        self.isActivated.toggle()
+        //self.isActivated.toggle()
         // 애니메이션 처리 하기
         animate()
     }

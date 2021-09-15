@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         name_member.removeAll()
         img_member.removeAll()
         index_member.removeAll()
+        check_member.removeAll()
         
         
     }// viewWillAppear

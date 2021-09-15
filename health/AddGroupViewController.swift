@@ -55,6 +55,10 @@ class AddGroupViewController: UIViewController {
         tv_addGroup.dataSource = self // 테이블뷰 실제 실헹
         self.tv_addGroup.reloadData()
        
+        print("\(id_member) ADD")
+        print("\(name_member) ADD")
+        print("\(img_member) ADD")
+        print("\(index_down) ADD")
         
         
        
@@ -119,6 +123,7 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
         
      
         print("\(indexPath.row) 여기는 팀원 추가 인덱스")
+        
         let numBer = index_down[indexPath.row]
  
        

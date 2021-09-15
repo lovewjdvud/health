@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISearchControllerDelegate {
 
    
@@ -104,10 +103,10 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
           
             
 
-            print("\(id_member)")
-            print("\(name_member)")
-            print("\(img_member)")
-            print("\(index_down)")
+            print("\(id_member) 팀")
+            print("\(name_member) 팀")
+            print("\(img_member) 팀")
+            print("\(index_down) 팀")
          
             ADD_controlle.add_id = id_member
             ADD_controlle.add_name = id_member
@@ -281,24 +280,29 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         cell.invite_id = "\(item.u_id!)"
         cell.invite_name = "\(item.u_name!)"
         cell.invite_img = "\(item.u_img!)"
+        
+        check_member[indexPath.row] = false
+        
+        
 //
 //        invite_confirm = false
-//        if index_member.count > 0 {
-//             print("\(indexPath.row) 인덱스 숫자")
+        if index_member.count > 0 {
+             print("\(indexPath.row) 인덱스 숫자")
+
+           print("\(index_member) 리스트 인덱스")
+            for i in index_member {
+              //  print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) 뭐냐 ")
+                if i == indexPath.row{
+                //    print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) 성공이야?")
+                    check_member[indexPath.row] = true
+
+//                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
+                }
 //
-//           print("\(index_member) 리스트 인덱스")
-//            for i in index_member {
-//                print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) ")
-//                if i == indexPath.row{
-//                    invite_confirm = true
-//
-////                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
-//                }
-////
-//            }
-//
-//        }
-//
+            }
+
+        }
+
         
         return cell
     
@@ -338,19 +342,19 @@ extension Teammembers_AddViewController : GM_FollowlistDBProtocol {
         
     }
 }
-//
-//
-////cell 안에 있는 버튼 이벤트 처리 방법
-//extension Teammembers_AddViewController: C_FollowProductCellDelegate{
-//    func btn_invite(index: Int ,invite_id: String, invite_name: String,invite_img: String) {
-//
-//    }
-//}
-//
-//extension Teammembers_AddViewController: AddGroupProticol2{
-//
-//    func btn_add_invite(test1: Int, test2: String, test3: String, test4: String) {
-//
-//    }
-//
-//}
+
+
+//cell 안에 있는 버튼 이벤트 처리 방법
+extension Teammembers_AddViewController: C_FollowProductCellDelegate{
+    func btn_invite(index: Int ,invite_id: String, invite_name: String,invite_img: String) {
+
+    }
+}
+
+extension Teammembers_AddViewController: AddGroupProticol2{
+
+    func btn_add_invite(test1: Int, test2: String, test3: String, test4: String) {
+
+    }
+
+}
