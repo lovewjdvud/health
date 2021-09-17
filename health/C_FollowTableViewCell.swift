@@ -15,6 +15,7 @@ var name_member = [Int : String]()
 var img_member = [Int : String]()
 var index_member: [Int] = []
 var index_down: [Int] = []
+var index_num = 0
 //index_member.sorted(by: <)
 
 
@@ -56,31 +57,23 @@ class C_FollowTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
        
+        print("여기는 쎌")
+        
+        
+        
+        
         btn_invite.layer.cornerRadius = 10 // 버튼 모서리 깍기
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
         
-       // print("시바 \(invite_confirm)")
-        print("시바 인덱스 \(index!)")
         
         
-        if check_member.count == 0 {
-            
-        } else if check_member[index] == true {
-                      
-            UIView.animate(withDuration: 0.2) { [self] in
-                            btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
-                                                     }
-                    
-        }
+            print("여기는 셀시작 인덱스넘 \(index_num)")
+           
+      
         
-//
-//        if invite_confirm {
-//        print("시바새꺄")
-//            UIView.animate(withDuration: 0.2) { [self] in
-//                btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
-//                                         }
-//        }
+
+    
       //  setupMiddleButton()
     }
     
@@ -129,7 +122,11 @@ class C_FollowTableViewCell: UITableViewCell {
          
             
             check_member.updateValue(true, forKey: index)
+            
+            print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
              invite_confirm = true // 다시 바꿔주기
+            
+            
             
         } else if invite_confirm == true {
             id_member.removeValue(forKey: index)

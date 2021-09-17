@@ -45,11 +45,15 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
        
         makeSingleTouch() //세그 먼트 조절하기
       
-    
+        print("여기는 테이블븅의 viewWillAppear")
         // 테이블뷰 실제 실헹
         g_tv_followlist.delegate = self
         g_tv_followlist.dataSource = self
         
+      
+        
+       
+      
         
     }//viewWillAppear
     
@@ -152,6 +156,8 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
            // FollowlistItem.removeAllObjects()
             self.g_tv_followlist.reloadData()
             gm_FollowlistDB.GM_FollowlistDBdownItems(user_u_no: Share.user_no, check: 0,searchTexts: "\(g_searchBar.text!)")
+           
+            
       
         }else if sm_num == 1 {
             
@@ -272,36 +278,26 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
                 cell.imgview_profileimg.image = UIImage(data: data)
             }
         }
-        
+        print("여기는 테이블뷸 ")
         cell.lbl_idprofile.text? = "\(item.u_id!)"
         cell.lbl_nameprofile.text? = "\(item.u_name!)"
         cell.selectionStyle = .none
+        index_num = indexPath.row
+        print("여기는 테이블 인덱스 넘 \(index_num)")
+        
+        if check_member[indexPath.row] == true {
+            
+        
+        UIView.animate(withDuration: 0.2) {
+            cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
+                                                                 }
+        }
+        
         cell.index = indexPath.row
         cell.invite_id = "\(item.u_id!)"
         cell.invite_name = "\(item.u_name!)"
         cell.invite_img = "\(item.u_img!)"
-        
-        check_member[indexPath.row] = false
-        
-        
-//
-//        invite_confirm = false
-        if index_member.count > 0 {
-             print("\(indexPath.row) 인덱스 숫자")
-
-           print("\(index_member) 리스트 인덱스")
-            for i in index_member {
-              //  print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) 뭐냐 ")
-                if i == indexPath.row{
-                //    print("\(i) : \(name_member[i]!) =  \(indexPath.row) : \(item.u_name!) 성공이야?")
-                    check_member[indexPath.row] = true
-
-//                //    print("\(i) 여기는 테이블류븅뉴윤ㅇㄹ")
-                }
-//
-            }
-
-        }
+       
 
         
         return cell
@@ -338,8 +334,14 @@ extension Teammembers_AddViewController : GM_FollowlistDBProtocol {
         followNum = g_list_cout
         
         
-     
+        if check_member.count == 0 {
         
+        for i in 0...FollowlistItem.count {
+            check_member.updateValue(false, forKey: i)
+            print("\(check_member) 값이 돌아??")
+        }
+     
+        } // if
     }
 }
 

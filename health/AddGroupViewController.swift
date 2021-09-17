@@ -127,8 +127,10 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
         let numBer = index_down[indexPath.row]
  
        
-        cell.lbl_id_memberAdd.text? = "\(id_member[ index_down[indexPath.row]] ?? "dd")"
-        cell.lbl_name_memberAdd.text? = "\(name_member[ index_down[indexPath.row]] ?? "실패")"
+        cell.lbl_id_memberAdd.text? = "\(id_member[index_down[indexPath.row]] ?? "dd")"
+        cell.lbl_name_memberAdd.text? = "\(name_member[index_down[indexPath.row]] ?? "실패")"
+        
+        
         print("\(id_member[numBer] ?? "dd")sss")
      
 //
