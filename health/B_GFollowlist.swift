@@ -35,9 +35,19 @@ class B_GFollowlist: UIButton {
     }
     
     @objc fileprivate func onBtnClicked(_ sender: UIButton){
-      
+      print("여기는 isActivated = \(isActivated)")
+        
+        if invite_confirm == false  {
+            self.isActivated = false
+        } else if invite_confirm == true {
+            self.isActivated = true
+        }
+        
+        
         self.isActivated.toggle()
         // 애니메이션 처리 하기
+        
+        print("여기는 isActivated 토글후 =  \(isActivated)")
         animate()
     }
     

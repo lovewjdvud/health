@@ -291,6 +291,8 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         UIView.animate(withDuration: 0.2) {
             cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
                                                                  }
+            
+         //   invite_confirm = true // 다시 바꿔주기
         }
         
         cell.index = indexPath.row
@@ -334,6 +336,9 @@ extension Teammembers_AddViewController : GM_FollowlistDBProtocol {
         followNum = g_list_cout
         
         
+        
+        
+        //  초기 값에 팔로우 false 값 넣어 주기
         if check_member.count == 0 {
         
         for i in 0...FollowlistItem.count {

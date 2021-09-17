@@ -18,7 +18,7 @@ var index_down: [Int] = []
 var index_num = 0
 //index_member.sorted(by: <)
 
-
+var invite_confirm = false
 
 protocol C_FollowProductCellDelegate {
     func btn_invite(index: Int ,invite_id: String, invite_name: String,invite_img: String)
@@ -50,31 +50,17 @@ class C_FollowTableViewCell: UITableViewCell {
     var invite_name_array: [String] = []
     var invite_img_array: [String] = []
    
-    var invite_confirm = false
+  
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
        
-        print("여기는 쎌")
-        
-        
-        
-        
         btn_invite.layer.cornerRadius = 10 // 버튼 모서리 깍기
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
         
-        
-        
-            print("여기는 셀시작 인덱스넘 \(index_num)")
-           
-      
-        
-
-    
-      //  setupMiddleButton()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -124,11 +110,11 @@ class C_FollowTableViewCell: UITableViewCell {
             check_member.updateValue(true, forKey: index)
             
             print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
-             invite_confirm = true // 다시 바꿔주기
+            invite_confirm = false // 다시 바꿔주기
             
             
             
-        } else if invite_confirm == true {
+        } else if  check_member[index] == true {
             id_member.removeValue(forKey: index)
             name_member.removeValue(forKey: index)
             img_member.removeValue(forKey: index)
@@ -146,7 +132,7 @@ class C_FollowTableViewCell: UITableViewCell {
             
             print("\(index!) 셀 삭제")
             check_member.updateValue(false, forKey: index)
-            invite_confirm = false // 다시 바꿔주기
+            invite_confirm = true // 다시 바꿔주기
         }
         
      
