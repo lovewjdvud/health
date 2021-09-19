@@ -8,6 +8,8 @@
 import UIKit
 import Foundation
 
+var follower_check_member = [String :  Bool]()
+var following_check_member = [String :  Bool]()
 var check_member = [Int :  Bool]()
 var test = [Int : String]()
 var id_member = [Int :  String]()
@@ -89,7 +91,9 @@ class C_FollowTableViewCell: UITableViewCell {
         
         //check_member[index] == false
         
-        if check_member[index] == false {
+        
+        // 팔로윙
+        if following_check_member[invite_id] == false && sm_num == 0{
 
             print("\(index!) 흠 \(invite_name)")
             id_member.updateValue("\(invite_id)", forKey: index)
@@ -99,22 +103,93 @@ class C_FollowTableViewCell: UITableViewCell {
             index_down = index_member.sorted(by: <)
             
          
-            print("\(id_member) 셀 추가")
-            print("\(name_member) 셀 추가")
-            print("\(img_member) 셀 추가")
-            print("\(index_down) 셀 추가")
-            print("\(index_member) 셀 추가")
-            print("\(invite_id) 여기는 추가")
+            print("\(id_member) 팔로윙 셀 추가")
+            print("\(name_member)팔로윙 셀 추가")
+            print("\(img_member)팔로윙 셀 추가")
+            print("\(index_down)팔로윙 셀 추가")
+            print("\(index_member)팔로윙 셀 추가")
+            print("\(invite_id)팔로윙 여기는 추가")
          
             
-            check_member.updateValue(true, forKey: index)
+            following_check_member.updateValue(true, forKey: invite_id)
             
-            print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
+            if follower_check_member[invite_id] != nil {
+              
+                follower_check_member.updateValue(true, forKey: invite_id)
+                
+            }
+            
+          //  print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
             invite_confirm = false // 다시 바꿔주기
             
             
             
-        } else if  check_member[index] == true {
+        } else if  following_check_member[invite_id] == true && sm_num == 0{
+            id_member.removeValue(forKey: index)
+            name_member.removeValue(forKey: index)
+            img_member.removeValue(forKey: index)
+          //index_member.firstIndex(of: 3)
+            print("\(index!) 삭제 인덱스 \(index_member)")
+            index_member.remove(at: index_member.firstIndex(of: index)!)
+            index_down = index_member.sorted(by: <)
+//          index_down.remove(at: index)
+            print("해제")
+            
+            print("\(id_member)팔로윙 셀 삭제")
+            print("\(name_member)팔로윙 셀 삭제")
+            print("\(img_member)팔로윙 셀 삭제")
+            print("\(index_down)팔로윙 인덱스 다윤 셀 삭제")
+            print("\(index_member)팔로윙 인덱스 멤버 셀 삭제")
+            
+            print("\(index!)팔로윙 셀 삭제")
+            following_check_member.updateValue(false, forKey: invite_id)
+            
+            
+            if follower_check_member[invite_id] != nil {
+              
+                follower_check_member.updateValue(false, forKey: invite_id)
+                
+            }
+            invite_confirm = true // 다시 바꿔주기
+            
+           
+        }
+
+        
+        // 팔로우
+        
+        else if follower_check_member[invite_id] == false && sm_num == 1{
+
+            print("\(index!) 흠 \(invite_name)")
+            id_member.updateValue("\(invite_id)", forKey: index)
+            name_member.updateValue("\(invite_name)", forKey: index)
+            img_member.updateValue("\(invite_img)", forKey: index)
+            index_member.append(index)
+            index_down = index_member.sorted(by: <)
+            
+         
+            print("\(id_member) 팔로워 셀 추가")
+            print("\(name_member) 팔로워 셀 추가")
+            print("\(img_member) 팔로워 셀 추가")
+            print("\(index_down) 팔로워 인덱스 다운 추가")
+            print("\(index_member) 팔로워 인덱스 멤버 셀 추가")
+            print("\(invite_id) 팔로워 여기는 추가")
+         
+            
+            follower_check_member.updateValue(true, forKey: invite_id)
+           
+            if following_check_member[invite_id] != nil {
+              
+                following_check_member.updateValue(true, forKey: invite_id)
+                
+            }
+            
+          //  print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
+            invite_confirm = false // 다시 바꿔주기
+            
+            
+            
+        } else if  follower_check_member[invite_id] == true && sm_num == 1{
             id_member.removeValue(forKey: index)
             name_member.removeValue(forKey: index)
             img_member.removeValue(forKey: index)
@@ -124,14 +199,21 @@ class C_FollowTableViewCell: UITableViewCell {
 //          index_down.remove(at: index)
             print("해제")
             
-            print("\(id_member) 셀 삭제")
-            print("\(name_member) 셀 삭제")
-            print("\(img_member) 셀 삭제")
-            print("\(index_down) 인덱스 다윤 셀 삭제")
-            print("\(index_member) 인덱스 멤버 셀 삭제")
+            print("\(id_member) 팔로워 셀 삭제")
+            print("\(name_member)팔로워 셀 삭제")
+            print("\(img_member)팔로워 셀 삭제")
+            print("\(index_down) 팔로워인덱스 다윤 셀 삭제")
+            print("\(index_member) 팔로워인덱스 멤버 셀 삭제")
             
             print("\(index!) 셀 삭제")
-            check_member.updateValue(false, forKey: index)
+            follower_check_member.updateValue(false, forKey: invite_id)
+            
+            if following_check_member[invite_id] != nil {
+              
+                following_check_member.updateValue(false, forKey: invite_id)
+                
+            }
+            
             invite_confirm = true // 다시 바꿔주기
         }
         

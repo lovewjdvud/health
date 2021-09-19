@@ -59,7 +59,7 @@ class AddGroupViewController: UIViewController {
         print("\(name_member) ADD")
         print("\(img_member) ADD")
         print("\(index_down) ADD")
-        
+        sm_num = 0
         
        
     }
@@ -125,7 +125,11 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
         print("\(indexPath.row) 여기는 팀원 추가 인덱스")
         
         let numBer = index_down[indexPath.row]
- 
+        
+           print("\(id_member) 여기는 팀원 추가 아이디")
+        print("\(name_member) 여기는 팀원 추가 이름")
+        print("\(index_down) 여기는 팀원 추가 인덳ㄱ,")
+        
        
         cell.lbl_id_memberAdd.text? = "\(id_member[index_down[indexPath.row]] ?? "dd")"
         cell.lbl_name_memberAdd.text? = "\(name_member[index_down[indexPath.row]] ?? "실패")"
