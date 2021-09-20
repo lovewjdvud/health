@@ -124,22 +124,22 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
      
         print("\(indexPath.row) 여기는 팀원 추가 인덱스")
         
-        let numBer = index_down[indexPath.row]
+       // let numBer = index_down[indexPath.row]
         
            print("\(id_member) 여기는 팀원 추가 아이디")
         print("\(name_member) 여기는 팀원 추가 이름")
         print("\(index_down) 여기는 팀원 추가 인덳ㄱ,")
         
        
-        cell.lbl_id_memberAdd.text? = "\(id_member[index_down[indexPath.row]] ?? "dd")"
-        cell.lbl_name_memberAdd.text? = "\(name_member[index_down[indexPath.row]] ?? "실패")"
+        cell.lbl_id_memberAdd.text? = "\(id_member[subway2_down[indexPath.row]] ?? "dd")"
+        cell.lbl_name_memberAdd.text? = "\(name_member[subway2_down[indexPath.row]] ?? "실패")"
         
         
-        print("\(id_member[numBer] ?? "dd")sss")
+    
      
 //
         DispatchQueue.global().async {
-            guard let url = URL(string: "\(Share.imgurl)\(img_member[ index_down[indexPath.row]] ?? "실패")") else { return }
+            guard let url = URL(string: "\(Share.imgurl)\(img_member[subway2_down[indexPath.row]] ?? "실패")") else { return }
             print("\(url)")
 
             guard let data = try? Data(contentsOf: url) else {

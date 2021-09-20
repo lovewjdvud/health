@@ -130,9 +130,16 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             print("\(img_member) 팀")
             print("\(index_down) 팀")
          
-            ADD_controlle.add_id = id_member
-            ADD_controlle.add_name = id_member
-            ADD_controlle.add_img = id_member
+//            ADD_controlle.add_id = id_member
+//            ADD_controlle.add_name = id_member
+//            ADD_controlle.add_img = id_member
+            
+          //  follow_index = index_member.union(f_index_member)
+            subway  = index_member + f_index_member
+            subway2_down = removeDuplication(in: subway)
+            
+           print("\(subway2_down) 집합")
+           
             
             
       //      delegate2?.didMessageEditDone3(self, id_protocol: id_member, name_protocol: name_member, img_protocol: img_member)
@@ -145,6 +152,15 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
         
         }
       
+    }
+    
+    // 중복 제거
+    func removeDuplication(in array: [Int]) -> [Int]{
+        let set = Set(array)
+        let duplicationRemovedArray = Array(set)
+        
+        subway2 = duplicationRemovedArray.sorted(by: <)
+        return subway2
     }
     
     // 추가 완료 버튼 누를 시 사람 없을 경울 alert 띄우기
@@ -347,11 +363,13 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
          
             UIView.animate(withDuration: 0.2) {
                 cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-                print("성공 sm = 0 색상")                                      }
+                print("성공 sm = 1 색상")                                      }
         
             
             if  follower_check_member["\(item.u_id!)"] == true || following_check_member["\(item.u_id!)"] == true  {
                 
+                
+               
                 print("성공 튜")
                 
             UIView.animate(withDuration: 0.2) {

@@ -8,17 +8,38 @@
 import UIKit
 import Foundation
 
-var follower_check_member = [String :  Bool]()
-var following_check_member = [String :  Bool]()
+
+// 팔로우 카운트 중복 제거 및 합치는 값
+var subway: [Int] = []
+var subway2: [Int] = []
+var subway2_down: [Int] = []
+
 var check_member = [Int :  Bool]()
 var test = [Int : String]()
+var b : Set<Int> = []
+
+// 팔로잉
+var following_check_member = [String :  Bool]()
 var id_member = [Int :  String]()
 var name_member = [Int : String]()
 var img_member = [Int : String]()
 var index_member: [Int] = []
 var index_down: [Int] = []
 var index_num = 0
+var key: [String] = []
 //index_member.sorted(by: <)
+
+// 팔로워
+
+var follower_check_member = [String :  Bool]()
+var f_id_member = [Int :  String]()
+var f_name_member = [Int : String]()
+var f_img_member = [Int : String]()
+var f_index_member: [Int] = []
+var f_index_down: [Int] = []
+var f_index_num = 0
+var f_key: [String] = []
+
 
 var invite_confirm = false
 
@@ -45,8 +66,8 @@ class C_FollowTableViewCell: UITableViewCell {
     var invite_id = ""
     var invite_name = ""
     var invite_img = ""
-  
     var test_C = B_GFollowlist()
+    
     // 클릭시 넣을 값
     var invite_id_array: [String] = []
     var invite_name_array: [String] = []
@@ -62,6 +83,9 @@ class C_FollowTableViewCell: UITableViewCell {
         btn_invite.layer.cornerRadius = 10 // 버튼 모서리 깍기
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
+        
+        
+      //  let transfer = ㅑ.union(subway)
         
     }
     
@@ -99,6 +123,8 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.updateValue("\(invite_id)", forKey: index)
             name_member.updateValue("\(invite_name)", forKey: index)
             img_member.updateValue("\(invite_img)", forKey: index)
+            key.append("\(invite_id)")
+            
             index_member.append(index)
             index_down = index_member.sorted(by: <)
             
@@ -125,12 +151,18 @@ class C_FollowTableViewCell: UITableViewCell {
             
             
         } else if  following_check_member[invite_id] == true && sm_num == 0{
+           
+            print("여기는 팔로잉 삭제 \(invite_id)")
             id_member.removeValue(forKey: index)
             name_member.removeValue(forKey: index)
             img_member.removeValue(forKey: index)
           //index_member.firstIndex(of: 3)
             print("\(index!) 삭제 인덱스 \(index_member)")
-            index_member.remove(at: index_member.firstIndex(of: index)!)
+            //key.remove(at:("\(invite_id)")
+            if let firstIndex = index_member.firstIndex(of: index) {
+                index_member.remove(at: firstIndex)
+            }
+           // index_member.remove(at: index_member.firstIndex(of: index)!)
             index_down = index_member.sorted(by: <)
 //          index_down.remove(at: index)
             print("해제")
@@ -164,8 +196,8 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.updateValue("\(invite_id)", forKey: index)
             name_member.updateValue("\(invite_name)", forKey: index)
             img_member.updateValue("\(invite_img)", forKey: index)
-            index_member.append(index)
-            index_down = index_member.sorted(by: <)
+            f_index_member.append(index)
+            f_index_down = index_member.sorted(by: <)
             
          
             print("\(id_member) 팔로워 셀 추가")
@@ -190,12 +222,18 @@ class C_FollowTableViewCell: UITableViewCell {
             
             
         } else if  follower_check_member[invite_id] == true && sm_num == 1{
+         
+            print("여기는 팔로워 삭제 \(invite_id)")
             id_member.removeValue(forKey: index)
             name_member.removeValue(forKey: index)
             img_member.removeValue(forKey: index)
           //index_member.firstIndex(of: 3)
-            index_member.remove(at: index_member.firstIndex(of: index)!)
-            index_down = index_member.sorted(by: <)
+            
+            if let firstIndex = f_index_member.firstIndex(of: index) {
+                f_index_member.remove(at: firstIndex)
+            }
+           // f_index_member.remove(at: index_member.firstIndex(of: index)!)
+            f_index_down = index_member.sorted(by: <)
 //          index_down.remove(at: index)
             print("해제")
             
