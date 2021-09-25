@@ -127,9 +127,14 @@ extension AddGroupViewController: UITableViewDelegate, UITableViewDataSource{
        // let numBer = index_down[indexPath.row]
         
            print("\(id_member) 여기는 팀원 추가 아이디")
-        print("\(name_member) 여기는 팀원 추가 이름")
-        print("\(index_down) 여기는 팀원 추가 인덳ㄱ,")
+       
+        print("\(key) 여기는 팀원 팔로윙")
+        print("\(f_key) 여기는 팀원 팔로워")
+        print("\(subway2_down) 여기는 팀원 최종 키 추가")
         
+         
+       
+      
        
         cell.lbl_id_memberAdd.text? = "\(id_member[subway2_down[indexPath.row]] ?? "dd")"
         cell.lbl_name_memberAdd.text? = "\(name_member[subway2_down[indexPath.row]] ?? "실패")"

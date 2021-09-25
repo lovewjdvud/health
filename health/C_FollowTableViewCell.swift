@@ -10,9 +10,9 @@ import Foundation
 
 
 // 팔로우 카운트 중복 제거 및 합치는 값
-var subway: [Int] = []
-var subway2: [Int] = []
-var subway2_down: [Int] = []
+var subway: [String] = []
+var subway2: [String] = []
+var subway2_down: [String] = []
 
 var check_member = [Int :  Bool]()
 var test = [Int : String]()
@@ -20,9 +20,9 @@ var b : Set<Int> = []
 
 // 팔로잉
 var following_check_member = [String :  Bool]()
-var id_member = [Int :  String]()
-var name_member = [Int : String]()
-var img_member = [Int : String]()
+var id_member = [String :  String]()
+var name_member = [String : String]()
+var img_member = [String : String]()
 var index_member: [Int] = []
 var index_down: [Int] = []
 var index_num = 0
@@ -117,12 +117,12 @@ class C_FollowTableViewCell: UITableViewCell {
         
         
         // 팔로윙
-        if following_check_member[invite_id] == false && sm_num == 0{
+        if following_check_member[invite_id] == false && sm_num == 0 {
 
             print("\(index!) 흠 \(invite_name)")
-            id_member.updateValue("\(invite_id)", forKey: index)
-            name_member.updateValue("\(invite_name)", forKey: index)
-            img_member.updateValue("\(invite_img)", forKey: index)
+            id_member.updateValue("\(invite_id)", forKey: invite_id)
+            name_member.updateValue("\(invite_name)", forKey: invite_id)
+            img_member.updateValue("\(invite_img)", forKey: invite_id)
             key.append("\(invite_id)")
             
             index_member.append(index)
@@ -132,9 +132,10 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(id_member) 팔로윙 셀 추가")
             print("\(name_member)팔로윙 셀 추가")
             print("\(img_member)팔로윙 셀 추가")
-            print("\(index_down)팔로윙 셀 추가")
-            print("\(index_member)팔로윙 셀 추가")
+           // print("\(index_down)팔로윙 셀 추가")
+          //  print("\(index_member)팔로윙 셀 추가")
             print("\(invite_id)팔로윙 여기는 추가")
+            print("\(key)팔로윙 키 셀 추가")
          
             
             following_check_member.updateValue(true, forKey: invite_id)
@@ -142,6 +143,7 @@ class C_FollowTableViewCell: UITableViewCell {
             if follower_check_member[invite_id] != nil {
               
                 follower_check_member.updateValue(true, forKey: invite_id)
+                print("\(follower_check_member) 여기는")
                 
             }
             
@@ -153,15 +155,26 @@ class C_FollowTableViewCell: UITableViewCell {
         } else if  following_check_member[invite_id] == true && sm_num == 0{
            
             print("여기는 팔로잉 삭제 \(invite_id)")
-            id_member.removeValue(forKey: index)
-            name_member.removeValue(forKey: index)
-            img_member.removeValue(forKey: index)
+            id_member.removeValue(forKey: invite_id)
+            name_member.removeValue(forKey: invite_id)
+            img_member.removeValue(forKey: invite_id)
           //index_member.firstIndex(of: 3)
             print("\(index!) 삭제 인덱스 \(index_member)")
             //key.remove(at:("\(invite_id)")
-            if let firstIndex = index_member.firstIndex(of: index) {
-                index_member.remove(at: firstIndex)
+            if let firstIndex = key.firstIndex(of: "\(invite_id)") {
+                key.remove(at: firstIndex)
             }
+            
+            if (f_key.firstIndex(of: "\(invite_id)") != nil) {
+             
+                if let firstIndex2 = f_key.firstIndex(of: "\(invite_id)") {
+                    f_key.remove(at: firstIndex2)
+                }
+                
+                
+            }
+            
+            
            // index_member.remove(at: index_member.firstIndex(of: index)!)
             index_down = index_member.sorted(by: <)
 //          index_down.remove(at: index)
@@ -170,10 +183,11 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(id_member)팔로윙 셀 삭제")
             print("\(name_member)팔로윙 셀 삭제")
             print("\(img_member)팔로윙 셀 삭제")
-            print("\(index_down)팔로윙 인덱스 다윤 셀 삭제")
-            print("\(index_member)팔로윙 인덱스 멤버 셀 삭제")
+           // print("\(index_down)팔로윙 인덱스 다윤 셀 삭제")
+         //   print("\(index_member)팔로윙 인덱스 멤버 셀 삭제")
+            print("\(key)팔로윙 키 셀 삭제")
             
-            print("\(index!)팔로윙 셀 삭제")
+           // print("\(index!)팔로윙 셀 삭제")
             following_check_member.updateValue(false, forKey: invite_id)
             
             
@@ -193,20 +207,22 @@ class C_FollowTableViewCell: UITableViewCell {
         else if follower_check_member[invite_id] == false && sm_num == 1{
 
             print("\(index!) 흠 \(invite_name)")
-            id_member.updateValue("\(invite_id)", forKey: index)
-            name_member.updateValue("\(invite_name)", forKey: index)
-            img_member.updateValue("\(invite_img)", forKey: index)
+            id_member.updateValue("\(invite_id)", forKey: invite_id)
+            name_member.updateValue("\(invite_name)", forKey: invite_id)
+            img_member.updateValue("\(invite_img)", forKey: invite_id)
             f_index_member.append(index)
             f_index_down = index_member.sorted(by: <)
+            
+            f_key.append("\(invite_id)")
             
          
             print("\(id_member) 팔로워 셀 추가")
             print("\(name_member) 팔로워 셀 추가")
             print("\(img_member) 팔로워 셀 추가")
             print("\(index_down) 팔로워 인덱스 다운 추가")
-            print("\(index_member) 팔로워 인덱스 멤버 셀 추가")
-            print("\(invite_id) 팔로워 여기는 추가")
-         
+          //  print("\(index_member) 팔로워 인덱스 멤버 셀 추가")
+        //    print("\(invite_id) 팔로워 여기는 추가")
+            print("\(f_key) 팔로워 키추가")
             
             follower_check_member.updateValue(true, forKey: invite_id)
            
@@ -224,13 +240,22 @@ class C_FollowTableViewCell: UITableViewCell {
         } else if  follower_check_member[invite_id] == true && sm_num == 1{
          
             print("여기는 팔로워 삭제 \(invite_id)")
-            id_member.removeValue(forKey: index)
-            name_member.removeValue(forKey: index)
-            img_member.removeValue(forKey: index)
-          //index_member.firstIndex(of: 3)
+            id_member.removeValue(forKey: invite_id)
+            name_member.removeValue(forKey: invite_id)
+            img_member.removeValue(forKey: invite_id)
+           //index_member.firstIndex(of: 3)
             
-            if let firstIndex = f_index_member.firstIndex(of: index) {
-                f_index_member.remove(at: firstIndex)
+            if let firstIndex = f_key.firstIndex(of: "\(invite_id)") {
+                f_key.remove(at: firstIndex)
+            }
+            
+            if (key.firstIndex(of: "\(invite_id)") != nil) {
+             
+                if let firstIndex2 = key.firstIndex(of: "\(invite_id)") {
+                    key.remove(at: firstIndex2)
+                }
+                
+                
             }
            // f_index_member.remove(at: index_member.firstIndex(of: index)!)
             f_index_down = index_member.sorted(by: <)
@@ -242,14 +267,14 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(img_member)팔로워 셀 삭제")
             print("\(index_down) 팔로워인덱스 다윤 셀 삭제")
             print("\(index_member) 팔로워인덱스 멤버 셀 삭제")
-            
-            print("\(index!) 셀 삭제")
+            print("\(f_key)팔로워인덱스 키 셀 삭제")
+         //   print("\(index!) 셀 삭제")
             follower_check_member.updateValue(false, forKey: invite_id)
             
             if following_check_member[invite_id] != nil {
               
                 following_check_member.updateValue(false, forKey: invite_id)
-                
+                print("\(following_check_member) 여기는")
             }
             
             invite_confirm = true // 다시 바꿔주기

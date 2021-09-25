@@ -17,13 +17,16 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
     
    
     var FollowlistItem: NSArray = NSArray()// DB에서 값 받아오는 곳
+    var Follow_o: NSArray = NSArray()// DB에서 값 받아오는 곳
+    var Follow_t: NSArray = NSArray()// DB에서 값 받아오는 곳
    
     
   
  
     var CF_cell = C_FollowTableViewCell()
     var ADD_controlle = AddGroupViewController()
-    var followNum = 0
+    var followNum_o = 0
+    var followNum_t = 0
   
   
  
@@ -36,6 +39,8 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
         g_searchBar.barStyle = .default //스타일
         g_searchBar.placeholder = "검색"
       
+        sm_follow_o() //following_check_member    불러오는 값
+        sm_follow_t()  //following_check_member    불러오는 값
      
         
         
@@ -84,7 +89,7 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
                 
             sm_num = 0
             sm_funtio()
-            self.g_tv_followlist.reloadData()
+            //self.g_tv_followlist.reloadData()
             
         }else if sender.selectedSegmentIndex == 1{
 //            UIView.animate(withDuration: 0.2) { [self] in
@@ -95,7 +100,7 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             sm_num = 1
             sm_funtio()
             
-            self.g_tv_followlist.reloadData()
+            //self.g_tv_followlist.reloadData()
     }
     }
   
@@ -129,13 +134,8 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             print("\(name_member) 팀")
             print("\(img_member) 팀")
             print("\(index_down) 팀")
-         
-//            ADD_controlle.add_id = id_member
-//            ADD_controlle.add_name = id_member
-//            ADD_controlle.add_img = id_member
-            
-          //  follow_index = index_member.union(f_index_member)
-            subway  = index_member + f_index_member
+       
+            subway  = key + f_key
             subway2_down = removeDuplication(in: subway)
             
            print("\(subway2_down) 집합")
@@ -155,12 +155,12 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
     }
     
     // 중복 제거
-    func removeDuplication(in array: [Int]) -> [Int]{
+    func removeDuplication(in array: [String]) -> [String]{
         let set = Set(array)
         let duplicationRemovedArray = Array(set)
         
-        subway2 = duplicationRemovedArray.sorted(by: <)
-        return subway2
+      //  subway2 = duplicationRemovedArray.sorted(by: <)
+        return duplicationRemovedArray
     }
     
     // 추가 완료 버튼 누를 시 사람 없을 경울 alert 띄우기
@@ -178,6 +178,27 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
        
       }
       
+    //following_check_member    불러오는 값
+    func sm_follow_o()  {
+     
+        if following_check_member.count == 0{
+        let gm_Follow_o = GM_follow_o()
+            gm_Follow_o.delegate = self
+            gm_Follow_o.GM_Follow_odownItems(user_u_no: Share.user_no, check: 0,searchTexts: "\(g_searchBar.text!)")
+        
+        }
+        
+       
+    }
+    //following_check_member    불러오는 값
+    func sm_follow_t()  {
+        if follower_check_member.count == 0{
+        let gm_Follow_o = GM_Follow_t()
+            gm_Follow_o.delegate = self
+            gm_Follow_o.GM_Follow_tdownItems(user_u_no: Share.user_no, check: 1,searchTexts: "\(g_searchBar.text!)")
+        
+        }
+    }
     
     // 세그먼트 DB기능 모아 놓기
     func sm_funtio()  {
@@ -189,7 +210,7 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
         if sm_num == 0 {
             
            // FollowlistItem.removeAllObjects()
-            self.g_tv_followlist.reloadData()
+         //   self.g_tv_followlist.reloadData()
             gm_FollowlistDB.GM_FollowlistDBdownItems(user_u_no: Share.user_no, check: 0,searchTexts: "\(g_searchBar.text!)")
            
             
@@ -197,7 +218,7 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
         }else if sm_num == 1 {
             
          //   FollowlistItem.removeAllObjects()
-            self.g_tv_followlist.reloadData()
+          //  self.g_tv_followlist.reloadData()
             gm_FollowlistDB.GM_FollowlistDBdownItems(user_u_no: Share.user_no, check: 1,searchTexts: "\(g_searchBar.text!)")
             
         }
@@ -246,6 +267,24 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
         
                           if  sm_follow.selectedSegmentIndex == 0 {
                             
+                            
+                            // 팔로우 리스트들 삭제
+                            id_member.removeAll()
+                            name_member.removeAll()
+                            img_member.removeAll()
+                            index_member.removeAll()
+                            check_member.removeAll()
+                            key.removeAll()
+                            f_key.removeAll()
+                         
+                            
+                            subway2_down.removeAll()
+                            subway2.removeAll()
+                            subway.removeAll()
+                            following_check_member.removeAll()
+                            follower_check_member.removeAll()
+                            
+                            
                             self.dismiss(animated: true, completion: nil) // 스와이프 뒤로가기
                             
                         }else if  sm_follow.selectedSegmentIndex == 1 {
@@ -292,21 +331,10 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "g_followcell", for: indexPath) as! C_FollowTableViewCell
         
-       // cell.imgview_profileimg
-     //   cell.lbl_idprofile.text? = "wjdvud" // 아이디
-     //   cell.lbl_nameprofile.text? = "송정평" // 이름
+   
        
         let item: DBModel = FollowlistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
         
-     
-            
-         //   invite_confirm = true // 다시 바꿔주기
-        
-        
-        
-   
-     
-     
         DispatchQueue.global().async {
             guard let url = URL(string: "\(Share.imgurl)\(item.u_img!)") else { return }
             print("\(url)")
@@ -325,14 +353,19 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         index_num = indexPath.row
         //      print("여기는 테이블  \(following_check_member["\(item.u_id ?? "ㅇㅇ")"]!) = \(item.u_id!)")
         
-        
+        cell.index = indexPath.row
+        cell.invite_id = "\(item.u_id!)"
+        cell.invite_name = "\(item.u_name!)"
+        cell.invite_img = "\(item.u_img!)"
+       
+
         
         //  print("성공 팔로워 \(sm_num), 아이디: \(item.u_name!) , 참거짓 \(String(describing: follower_check_member["\(item.u_id!)"]))")
-        
+        print("성공 팔로윙 \(sm_num), 아이디: \(item.u_name!) , 참 & 거짓 \(String(describing: follower_check_member["\(item.u_id!)"])), 인덱스 \(indexPath.row), 카운트 \(FollowlistItem.count)")
              
         if sm_follow.selectedSegmentIndex == 0 {
             
-            print("성공 sm = 0")
+        print("성공 sm = 0")
             
         UIView.animate(withDuration: 0.2) {
         cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
@@ -342,6 +375,7 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         if following_check_member["\(item.u_id!)"] == true ||  follower_check_member["\(item.u_id!)"] == true {
            
         print("성공")
+            
         UIView.animate(withDuration: 0.2) {
             cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
         
@@ -352,9 +386,6 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         
        
         }// if 끝
-         
-              print("성공 팔로윙 \(sm_num), 아이디: \(item.u_name!) , 참 & 거짓 \(String(describing: follower_check_member["\(item.u_id!)"])), 인덱스 \(indexPath.row), 카운트 \(FollowlistItem.count)")
-        
         
         
         if sm_follow.selectedSegmentIndex == 1 {
@@ -379,12 +410,7 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
             
         } //if 끝
         
-        cell.index = indexPath.row
-        cell.invite_id = "\(item.u_id!)"
-        cell.invite_name = "\(item.u_name!)"
-        cell.invite_img = "\(item.u_img!)"
-       
-
+ 
         
         return cell
     
@@ -410,42 +436,113 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
 
 
 
+extension Teammembers_AddViewController : GM_Follow_tProtocol {
+  
+    func GM_Follow_titemDownloaded(follow_t_items: NSArray, g_list_cout: Int) {
+        
+        Follow_t = follow_t_items as! NSMutableArray
+        self.g_tv_followlist.reloadData()
+        followNum_t = g_list_cout - 1
+        
+        
+        if follower_check_member.count == 0 {
+
+
+            for i in 0...followNum_t {
+                print("\(followNum_t) 값이")
+                let item: DBModel = Follow_t[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+
+                follower_check_member.updateValue(false, forKey: item.u_id!)
+                print("\(follower_check_member) 팔로워값이 돌아??")
+
+            }
+        } // if
+        
+    }
+    
+    
+}
+
+
+//GM_follow_o
+extension Teammembers_AddViewController : GM_Follow_oProtocol {
+    func GM_Follow_oitemDownloaded(follow_o_items: NSArray, g_list_cout: Int) {
+        
+        
+        Follow_o = follow_o_items as! NSMutableArray
+        self.g_tv_followlist.reloadData()
+        followNum_o = g_list_cout - 1
+        
+        
+        if following_check_member.count == 0  {
+        
+        for i in 0...followNum_o {
+            print("\(followNum_o) 값이")
+            
+            let item: DBModel = Follow_o[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+            following_check_member.updateValue(false, forKey: item.u_id!)
+            print("\(check_member) 값이 돌아??")
+        }
+        } // if 끝
+        
+//        if follower_check_member.count == 0 {
+//
+//
+//            for i in 0...followNum {
+//                print("\(followNum) 값이")
+//                let item: DBModel = Follow_o[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+//
+//                follower_check_member.updateValue(false, forKey: item.u_id!)
+//                print("\(follower_check_member) 팔로워값이 돌아??")
+//
+//            }
+//        } // if
+        
+        
+        
+    }
+    
+    
+    
+    
+}
+
 extension Teammembers_AddViewController : GM_FollowlistDBProtocol {
    
 
     func GM_FollowlistDBitemDownloaded(items: NSArray, g_list_cout: Int) {
         FollowlistItem = items as! NSMutableArray
-        
+
         self.g_tv_followlist.reloadData()
-        followNum = g_list_cout - 1
+//        followNum_o = g_list_cout - 1
+//
         
         
-        
-        
-        //  초기 값에 팔로우 false 값 넣어 주기
-        if following_check_member.count == 0 && sm_follow.selectedSegmentIndex == 0 {
-        
-        for i in 0...followNum {
-            print("\(followNum) 값이")
-            
-            let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
-            following_check_member.updateValue(false, forKey: item.u_id!)
-            print("\(check_member) 값이 돌아??")
-        }
-     
-        } else if follower_check_member.count == 0 && sm_follow.selectedSegmentIndex == 1{
-            
-            
-            for i in 0...followNum {
-                print("\(followNum) 값이")
-                let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
-                
-                follower_check_member.updateValue(false, forKey: item.u_id!)
-                print("\(follower_check_member) 팔로워값이 돌아??")
-            }
-        } // if
-        
-        
+//
+//        //  초기 값에 팔로우 false 값 넣어 주기
+//        if following_check_member.count == 0 && sm_follow.selectedSegmentIndex == 0 {
+//
+//        for i in 0...followNum_o {
+//            print("\(followNum) 값이")
+//
+//            let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+//            following_check_member.updateValue(false, forKey: item.u_id!)
+//            print("\(check_member) 값이 돌아??")
+//        }
+//
+//        } else if follower_check_member.count == 0 && sm_follow.selectedSegmentIndex == 1{
+//
+//
+//            for i in 0...followNum_o {
+//                print("\(followNum) 값이")
+//                let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+//
+//                follower_check_member.updateValue(false, forKey: item.u_id!)
+//                print("\(follower_check_member) 팔로워값이 돌아??")
+//            }
+//        } // if
+//
+//
         
     }
 }

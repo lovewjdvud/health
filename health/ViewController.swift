@@ -59,6 +59,8 @@ class ViewController: UIViewController {
         img_member.removeAll()
         index_member.removeAll()
         check_member.removeAll()
+        key.removeAll()
+        f_key.removeAll()
      
         
         subway2_down.removeAll()
