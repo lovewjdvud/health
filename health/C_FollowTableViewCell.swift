@@ -139,13 +139,14 @@ class C_FollowTableViewCell: UITableViewCell {
          
             
             following_check_member.updateValue(true, forKey: invite_id)
-            
+            print("\(following_check_member) 여기는 팔로잉 true 하는 목록")
             if follower_check_member[invite_id] != nil {
               
                 follower_check_member.updateValue(true, forKey: invite_id)
-                print("\(follower_check_member) 여기는")
-                
+              
+            print("팔로워로 들어갔다")
             }
+            print("\(follower_check_member) 여기는 팔로워 true 하는 목록")
             
           //  print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
             invite_confirm = false // 다시 바꿔주기
@@ -189,13 +190,14 @@ class C_FollowTableViewCell: UITableViewCell {
             
            // print("\(index!)팔로윙 셀 삭제")
             following_check_member.updateValue(false, forKey: invite_id)
-            
+            print("\(following_check_member) 여기는 팔로잉 false 하는 목록")
             
             if follower_check_member[invite_id] != nil {
               
                 follower_check_member.updateValue(false, forKey: invite_id)
-                
+               print("팔로워 들어갔다")
             }
+            print("\(follower_check_member) 여기는 팔로워 false 하는 목록")
             invite_confirm = true // 다시 바꿔주기
             
            
@@ -225,13 +227,13 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(f_key) 팔로워 키추가")
             
             follower_check_member.updateValue(true, forKey: invite_id)
-           
+            print("\(follower_check_member) 여기는 팔로워 true 하는 목록")
             if following_check_member[invite_id] != nil {
               
                 following_check_member.updateValue(true, forKey: invite_id)
-                
+               print("팔로잉 들어갔다")
             }
-            
+            print("\(following_check_member) 여기는 팔로잉 true 하는 목록")
           //  print("여기는 \(check_member[index]!)  이거는 인덱스 넘\(index_num) 이거는 인덱스 \(index!)")
             invite_confirm = false // 다시 바꿔주기
             
@@ -270,13 +272,13 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(f_key)팔로워인덱스 키 셀 삭제")
          //   print("\(index!) 셀 삭제")
             follower_check_member.updateValue(false, forKey: invite_id)
-            
+            print("\(follower_check_member) 여기는 팔로워 false 하는 목록")
             if following_check_member[invite_id] != nil {
               
                 following_check_member.updateValue(false, forKey: invite_id)
-                print("\(following_check_member) 여기는")
+                print("팔로잉 들어간다")
             }
-            
+            print("\(following_check_member) 여기는 팔로잉 false 하는 목록")
             invite_confirm = true // 다시 바꿔주기
         }
         

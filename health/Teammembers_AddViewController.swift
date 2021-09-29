@@ -98,10 +98,13 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
        
             
             sm_num = 1
+            
             sm_funtio()
             
             //self.g_tv_followlist.reloadData()
     }
+        
+        
     }
   
     
@@ -367,50 +370,48 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
             
         print("성공 sm = 0")
             
-        UIView.animate(withDuration: 0.2) {
+       
         cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-                                       }
+                                       
             
             
         if following_check_member["\(item.u_id!)"] == true ||  follower_check_member["\(item.u_id!)"] == true {
            
         print("성공")
             
-        UIView.animate(withDuration: 0.2) {
+      
             cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
-        
             
-        }
+            
         
         }
-        
-       
         }// if 끝
+       
         
         
         if sm_follow.selectedSegmentIndex == 1 {
             
             print("성공 sm = 1")
          
-            UIView.animate(withDuration: 0.2) {
+      
                 cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-                print("성공 sm = 1 색상")                                      }
+                print("성공 sm = 1 색상")
         
+            
             
             if  follower_check_member["\(item.u_id!)"] == true || following_check_member["\(item.u_id!)"] == true  {
                 
                 
                
                 print("성공 튜")
-                
-            UIView.animate(withDuration: 0.2) {
+          
                 cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1))
-                                                                     }
+                                                                     
             }
             
         } //if 끝
         
- 
+      //  cell.btn_invite.tintColor = UIColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         
         return cell
     
