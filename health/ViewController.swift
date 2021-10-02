@@ -30,9 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        tableView_GroupList.delegate = self
-        tableView_GroupList.dataSource = self // 테이블뷰 실제 실헹
+     
         
         
 
@@ -41,6 +39,10 @@ class ViewController: UIViewController {
     
     // 다른 화면 갔다가 왔을때 해주고 싶은 처리
     override func viewWillAppear(_ animated: Bool){
+        
+        
+         tableView_GroupList.delegate = self
+         tableView_GroupList.dataSource = self // 테이블뷰 실제 실헹
        
         let grouplistDB = GrouplistDB()
         grouplistDB.delegate = self
@@ -53,6 +55,9 @@ class ViewController: UIViewController {
         g_noDB.delegate = self
         g_noDB.Group_gno_DBdownItems(user_u_no: Share.user_no) // 실행
       
+        
+        self.tableView_GroupList.reloadData()
+        
         // 팔로우 리스트들 삭제
         id_member.removeAll()
         name_member.removeAll()
@@ -69,8 +74,13 @@ class ViewController: UIViewController {
         following_check_member.removeAll()
         follower_check_member.removeAll()
         
+     
+        
+        
+        
     }// viewWillAppear
-
+    
+  
 }//ViewController
 
 
@@ -81,8 +91,12 @@ extension ViewController : GrouplistDBProtocol {
    
 
     func itemDownloaded(items: NSMutableArray, g_list_cout: Int) {
+     
+        
         GrouplistItem = items
         g_count = g_list_cout
+        
+        print("\(GrouplistItem.count) 정평 1")
         
         self.tableView_GroupList.reloadData()
         
@@ -96,8 +110,13 @@ extension ViewController : GrouplistDBProtocol {
 extension ViewController : Group_gno_DBProtocol {
  
     func G_noitemDownloaded(items: NSMutableArray) {
+        
+        
         G_no_Item = items
-    
+        print("\(G_no_Item.count) 정평 2")
+        self.tableView_GroupList.reloadData()
+        
+        
     }
 }
 
@@ -113,10 +132,12 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
         dateFormatter.timeZone = TimeZone.current
         currentdate = "\(dateFormatter.string(from: date))"
         print(dateFormatter.string(from: date))
-        
+       
+
         let endDate = dateFormatter.date(from:"\(finishdate)")! // 이친구가 앞
         let startDate = dateFormatter.date(from:"\(currentdate)")!
-       
+      //  print("\(finishdate) 안녕 데이트안에")
+      //  print("\(currentdate) 안녕 데이트안에")
         let interval = startDate.timeIntervalSince(endDate)
         let days = Int(interval / 86400)
         
@@ -148,11 +169,15 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
         let item2: DBModel = G_no_Item[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
        
         let cal_result = Date_Calculate(finishdate: "\(item2.m_registerday!)") // 날짜 넣기
+        print("\(item.g_title!) 안녕")
+        
+      
         
        
         cell.lbl_group_title.text? = "\(item.g_title!)" // 팀이름
         cell.lbl_group_finshday.text? = "\(item.g_finishday!)" // 팀 종료 날짜
         cell.lbl_group_lastDay.text? = "\(cal_result)일" // 지난날들
+        
         cell.lbl_group_number.text? = "\(item2.count!)명"
         return cell //리턴으로 셀의 값을 넣어 보낸다
 } //tableView

@@ -56,6 +56,7 @@ class GrouplistDB{
             if let g_title = jsonElement["g_title"] as? String,
                let g_finishday = jsonElement["g_finishday"] as? String,
                let g_no = jsonElement["g_no"] as? String
+            
         
             {
                 let query = DBModel(g_title: g_title,g_finishday: g_finishday, g_no: g_no)
@@ -68,13 +69,14 @@ class GrouplistDB{
             
         }
       
-        
+       
         DispatchQueue.main.async(execute: {() -> Void in
             
            var g_count = 0
             g_count =  locations.count
             self.delegate.itemDownloaded(items: locations, g_list_cout: g_count)
             print("\(locations.count) 이녀석의 카운트는??")
+          
             
         })
         

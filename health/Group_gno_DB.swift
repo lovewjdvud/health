@@ -25,6 +25,7 @@ class Group_gno_DB{
         urlPath = urlPath + urlAdd
         urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         print("URL is : \(urlPath)")
+        print("희지 \(urlPath)")
         let url: URL = URL(string: urlPath)!
         let defaultSession = URLSession(configuration: .default)
         let task = defaultSession.dataTask(with: url){data, response, error in

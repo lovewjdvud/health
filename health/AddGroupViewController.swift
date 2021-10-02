@@ -24,7 +24,8 @@ protocol AddGroupProticol2 {
 
 
 class AddGroupViewController: UIViewController {
-
+   
+    var currentdate_make = ""  // 현재 날짜
     var add_id =  [Int : String]()
     var add_name =  [Int : String]()
     var add_img =  [Int : String]()
@@ -32,6 +33,9 @@ class AddGroupViewController: UIViewController {
     var test2 = ""
     var test3 = ""
     var test4 = ""
+    
+    var g_finiday = "" //목표날짜
+    
     
     var delegate: AddGroupProticol2?
     @IBOutlet weak var tv_addGroup: UITableView!
@@ -63,6 +67,107 @@ class AddGroupViewController: UIViewController {
         
        
     }
+    
+    @IBAction func datePicker_finishday(_ sender: UIDatePicker) {
+        
+            let datePickerView = sender
+            let formatter = DateFormatter()
+            
+            formatter.locale = Locale(identifier: "ko")
+          //  formatter.dateFormat =  "yyyy-MM-dd a hh:mm"  //24시간 HH
+            formatter.dateFormat =  "yyyy-MM-dd"  //24시간 HH
+
+        
+        g_finiday = "\(formatter.string(from: datePickerView.date))"
+         
+    }
+    
+    
+    
+    @IBAction func btn_group_make(_ sender: UIButton) {
+        
+        
+            
+           if g_finiday == "" {
+            let Edict = UIAlertController(title: "경고", message: "날짜를 입력주세요!", preferredStyle: .alert)
+            let EdicCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            Edict.addAction(EdicCancel)
+            present(Edict, animated: true, completion: nil)
+
+        }else if addGroup_tf_title.text! == "" {
+            let Edict = UIAlertController(title: "경고", message: "제목을 입력해주세요!", preferredStyle: .alert)
+            let EdicCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            Edict.addAction(EdicCancel)
+            present(Edict, animated: true, completion: nil)
+            
+        } else if id_member.count <= 0  {
+            let Edict = UIAlertController(title: "경고", message: "혼자 진행하시겠습니까?",  preferredStyle: .alert)
+         
+            let Edictallow = UIAlertAction(title: "예", style: .default, handler:  { [self]ACTION in group_make()})
+            let EdicCancel = UIAlertAction(title: "아니요", style: .destructive, handler: nil)
+          
+            Edict.addAction(Edictallow)
+            Edict.addAction(EdicCancel)
+           
+            present(Edict, animated: true, completion: nil)
+            
+        } else if g_finiday != "" && id_member.count > 0{
+        //Action
+        let Edict = UIAlertController(title: "그룹 생성", message: "그룹을 생성하시겠습까??", preferredStyle: .alert)
+        
+    
+        let EdicCancel = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        let Edictallow = UIAlertAction(title: "예", style: .default, handler:  { [self]ACTION in group_make()})
+ //       let lampOnAction = UIAlertAction(title: "아니요 켭니다", style: .default, handler: { [self]ACTION in nil})
+     
+      //  EdictCancel.setValue(UIColor(red: CGFloat(GL_RED), green: nil, blue: nil, alpha: nil), forKey: "title")
+              
+               // lampremove.addAction(lampOnAction)
+        Edict.addAction(Edictallow)
+        Edict.addAction(EdicCancel)
+      
+                present(Edict, animated: true, completion: nil)
+        
+        }
+        
+        
+        
+        
+    }
+    
+    func group_make()  {
+    
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone.current
+        currentdate_make = "\(dateFormatter.string(from: date))"
+        
+        
+        
+        let gm_Follow_o = GM_make()
+    
+        
+        
+        //finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)" ,idlist: subway2_down
+        
+        let result =  gm_Follow_o.GM_makeItems(finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)", idlist: subway2_down, user_u_no: Share.user_no, currentedate: currentdate_make)
+       
+        if result{
+      
+            print("성공")
+            
+            self.navigationController?.popViewController(animated: true)
+            
+        } else  {
+            
+            print("실패")
+        }
+        
+    }
+    
+    
+    
     
    
         

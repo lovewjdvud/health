@@ -24,7 +24,7 @@ class GM_follow_o{
       
         urlPath = urlPath + urlAdd
         urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        print("URL is : \(urlPath) 값이" )
+        print("URL is : \(urlPath) follow값이" )
         let url: URL = URL(string: urlPath)!
         let defaultSession = URLSession(configuration: .default)
         let task = defaultSession.dataTask(with: url){data, response, error in
