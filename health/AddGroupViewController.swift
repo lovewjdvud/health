@@ -36,7 +36,7 @@ class AddGroupViewController: UIViewController {
     
     var g_finiday = "" //목표날짜
     
-    
+    var view_c = ViewController()
     var delegate: AddGroupProticol2?
     @IBOutlet weak var tv_addGroup: UITableView!
     @IBOutlet weak var addGroup_tf_title: UITextField!
@@ -146,18 +146,29 @@ class AddGroupViewController: UIViewController {
         
         
         let gm_Follow_o = GM_make()
-    
-        
+     
+        let test = [1, 2, 3, 4]
         
         //finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)" ,idlist: subway2_down
         
-        let result =  gm_Follow_o.GM_makeItems(finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)", idlist: subway2_down, user_u_no: Share.user_no, currentedate: currentdate_make)
+        let result =  gm_Follow_o.GM_makeItems(finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)", u_nolist: final_u_nolist, user_u_no: Share.user_no, currentedate: currentdate_make)
+        
        
-        if result{
+        if result {
       
             print("성공")
+           // DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             
-            self.navigationController?.popViewController(animated: true)
+            // 여기는 팀원 추가 후 로딩 하는 장면
+           LoadingIndicator.showLoading()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        LoadingIndicator.hideLoading()
+                self.navigationController?.popViewController(animated: true)
+                    }
+           
+       
+           // }
+          
             
         } else  {
             
@@ -288,5 +299,36 @@ extension AddGroupViewController: EditDelegate{
     func didMessageEditDone3(_ controller: C_FollowTableViewCell, id_protocol: Dictionary<Int, String>, name_protocol: Dictionary<Int, String>, img_protocol: Dictionary<Int, String>) {
         add_id = id_protocol
         
+    }
+}
+
+// 여기는 팀원 추가 후 로딩 하는데 필요한 코드
+
+class LoadingIndicator {
+    static func showLoading() {
+        DispatchQueue.main.async {
+            // 최상단에 있는 window 객체 획득
+            guard let window = UIApplication.shared.windows.last else { return }
+
+            let loadingIndicatorView: UIActivityIndicatorView
+            if let existedView = window.subviews.first(where: { $0 is UIActivityIndicatorView } ) as? UIActivityIndicatorView {
+                loadingIndicatorView = existedView
+            } else {
+                loadingIndicatorView = UIActivityIndicatorView(style: .large)
+                /// 다른 UI가 눌리지 않도록 indicatorView의 크기를 full로 할당
+                loadingIndicatorView.frame = window.frame
+                loadingIndicatorView.color = .blue
+                window.addSubview(loadingIndicatorView)
+            }
+
+            loadingIndicatorView.startAnimating()
+        }
+    }
+
+    static func hideLoading() {
+        DispatchQueue.main.async {
+            guard let window = UIApplication.shared.windows.last else { return }
+            window.subviews.filter({ $0 is UIActivityIndicatorView }).forEach { $0.removeFromSuperview() }
+        }
     }
 }

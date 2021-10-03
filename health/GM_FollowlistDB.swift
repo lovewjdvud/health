@@ -56,10 +56,11 @@ class GM_FollowlistDB{
             jsonElement = jsonResult[i] as! NSDictionary
             if let u_id = jsonElement["u_id"] as? String,
                let u_name = jsonElement["u_name"] as? String,
-               let u_img = jsonElement["u_img"] as? String
+               let u_img = jsonElement["u_img"] as? String,
+               let u_no = jsonElement["u_no"] as? String
         
             {
-                let query = DBModel(u_id: u_id, u_name: u_name, u_img: u_img)
+                let query = DBModel(u_id: u_id, u_name: u_name, u_img: u_img,u_no:u_no)
                 locations.add(query)
               
                

@@ -12,13 +12,14 @@ class GM_make{
    
     var urlPath = "\(Share.urlIP)GM_mamke.jsp"
     
-    func GM_makeItems(finiday: String, title: String ,idlist: Array<String>, user_u_no: Int , currentedate: String) -> Bool{
+    func GM_makeItems(finiday: String, title: String ,u_nolist: Array<Int>, user_u_no: Int , currentedate: String) -> Bool{
         var result: Bool = true
-        let urlAdd = "?finiday=\(finiday)&title=\(title)&user_u_no=\(user_u_no)&currentedate=\(currentedate)&idlist=\(idlist)"
+        let urlAdd = "?finiday=\(finiday)&title=\(title)&user_u_no=\(user_u_no)&currentedate=\(currentedate)&u_nolist=\(u_nolist)"
         urlPath = urlPath + urlAdd // urlpath는 진짜 URL
         //한글 url encoding
        
        let ur  = urlPath.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)! // 배열 인코딩
+        
         print("\(ur) 여기는 GM_make" )
         print("")
         print("\(urlPath) 여기는 GM_make" )

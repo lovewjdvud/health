@@ -13,6 +13,8 @@ import Foundation
 var subway: [String] = []
 var subway2: [String] = []
 var subway2_down: [String] = []
+var final_u_nolist : [Int] = []
+var testsssss : [Int] = []
 
 var check_member = [Int :  Bool]()
 var test = [Int : String]()
@@ -23,10 +25,12 @@ var following_check_member = [String :  Bool]()
 var id_member = [String :  String]()
 var name_member = [String : String]()
 var img_member = [String : String]()
+var u_no_member = [String : Int]()
 var index_member: [Int] = []
 var index_down: [Int] = []
 var index_num = 0
 var key: [String] = []
+var fr_u_no_list: [Int] = []
 //index_member.sorted(by: <)
 
 // 팔로워
@@ -39,7 +43,7 @@ var f_index_member: [Int] = []
 var f_index_down: [Int] = []
 var f_index_num = 0
 var f_key: [String] = []
-
+var fg_u_no_list: [Int] = []
 
 var invite_confirm = false
 
@@ -66,6 +70,7 @@ class C_FollowTableViewCell: UITableViewCell {
     var invite_id = ""
     var invite_name = ""
     var invite_img = ""
+    var invite_uno:  Int!
     var test_C = B_GFollowlist()
     
     // 클릭시 넣을 값
@@ -83,7 +88,7 @@ class C_FollowTableViewCell: UITableViewCell {
         btn_invite.layer.cornerRadius = 10 // 버튼 모서리 깍기
         imgview_profileimg.layer.cornerRadius = 39.6
         imgview_profileimg.clipsToBounds = true
-        
+        final_u_nolist.removeAll()
         
       //  let transfer = ㅑ.union(subway)
         
@@ -123,8 +128,9 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.updateValue("\(invite_id)", forKey: invite_id)
             name_member.updateValue("\(invite_name)", forKey: invite_id)
             img_member.updateValue("\(invite_img)", forKey: invite_id)
+            u_no_member.updateValue(invite_uno, forKey: invite_id)
             key.append("\(invite_id)")
-            
+            fg_u_no_list.append(invite_uno)
             index_member.append(index)
             index_down = index_member.sorted(by: <)
             
@@ -136,7 +142,11 @@ class C_FollowTableViewCell: UITableViewCell {
           //  print("\(index_member)팔로윙 셀 추가")
             print("\(invite_id)팔로윙 여기는 추가")
             print("\(key)팔로윙 키 셀 추가")
-         
+            print("\(u_no_member) ㅋㅋㅋㅋ")
+            print("\(fr_u_no_list)하이용 팔로잉 셀 추가")
+            print("\(fg_u_no_list)하이용 팔로잉 셀 추가")
+            
+            
             
             following_check_member.updateValue(true, forKey: invite_id)
             print("\(following_check_member) 여기는 팔로잉 true 하는 목록")
@@ -159,6 +169,7 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.removeValue(forKey: invite_id)
             name_member.removeValue(forKey: invite_id)
             img_member.removeValue(forKey: invite_id)
+            u_no_member.removeValue(forKey: invite_id)
           //index_member.firstIndex(of: 3)
             print("\(index!) 삭제 인덱스 \(index_member)")
             //key.remove(at:("\(invite_id)")
@@ -176,6 +187,21 @@ class C_FollowTableViewCell: UITableViewCell {
             }
             
             
+            
+            if let firstIndex = fg_u_no_list.firstIndex(of: invite_uno) {
+                fg_u_no_list.remove(at: firstIndex)
+            }
+            
+            if (fr_u_no_list.firstIndex(of: invite_uno) != nil) {
+             
+                if let firstIndex2 = fr_u_no_list.firstIndex(of: invite_uno) {
+                    fr_u_no_list.remove(at: firstIndex2)
+                }
+                
+                
+            }
+            
+            
            // index_member.remove(at: index_member.firstIndex(of: index)!)
             index_down = index_member.sorted(by: <)
 //          index_down.remove(at: index)
@@ -187,6 +213,10 @@ class C_FollowTableViewCell: UITableViewCell {
            // print("\(index_down)팔로윙 인덱스 다윤 셀 삭제")
          //   print("\(index_member)팔로윙 인덱스 멤버 셀 삭제")
             print("\(key)팔로윙 키 셀 삭제")
+            print("\(u_no_member) ㅋㅋㅋㅋ")
+            
+            print("\(fr_u_no_list)하이용 팔로잉 삭ㅈ데")
+            print("\(fg_u_no_list)하이용 팔로잉 삭제")
             
            // print("\(index!)팔로윙 셀 삭제")
             following_check_member.updateValue(false, forKey: invite_id)
@@ -212,12 +242,15 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.updateValue("\(invite_id)", forKey: invite_id)
             name_member.updateValue("\(invite_name)", forKey: invite_id)
             img_member.updateValue("\(invite_img)", forKey: invite_id)
+            u_no_member.updateValue(invite_uno, forKey: invite_id)
             f_index_member.append(index)
             f_index_down = index_member.sorted(by: <)
-            
+           
             f_key.append("\(invite_id)")
+            fr_u_no_list.append(invite_uno)
             
-         
+            print("\(fr_u_no_list)하이용 팔로워 셀 추가")
+            print("\(fg_u_no_list)하이용 팔로워 셀 추가")
             print("\(id_member) 팔로워 셀 추가")
             print("\(name_member) 팔로워 셀 추가")
             print("\(img_member) 팔로워 셀 추가")
@@ -225,6 +258,7 @@ class C_FollowTableViewCell: UITableViewCell {
           //  print("\(index_member) 팔로워 인덱스 멤버 셀 추가")
         //    print("\(invite_id) 팔로워 여기는 추가")
             print("\(f_key) 팔로워 키추가")
+            print("\(u_no_member) ㅋㅋㅋㅋ")
             
             follower_check_member.updateValue(true, forKey: invite_id)
             print("\(follower_check_member) 여기는 팔로워 true 하는 목록")
@@ -245,6 +279,7 @@ class C_FollowTableViewCell: UITableViewCell {
             id_member.removeValue(forKey: invite_id)
             name_member.removeValue(forKey: invite_id)
             img_member.removeValue(forKey: invite_id)
+            u_no_member.removeValue(forKey: invite_id)
            //index_member.firstIndex(of: 3)
             
             if let firstIndex = f_key.firstIndex(of: "\(invite_id)") {
@@ -255,6 +290,21 @@ class C_FollowTableViewCell: UITableViewCell {
              
                 if let firstIndex2 = key.firstIndex(of: "\(invite_id)") {
                     key.remove(at: firstIndex2)
+                }
+                
+                
+            }
+            
+            
+            
+            if let firstIndex = fr_u_no_list.firstIndex(of: invite_uno) {
+                fr_u_no_list.remove(at: firstIndex)
+            }
+            
+            if (fg_u_no_list.firstIndex(of: invite_uno) != nil) {
+             
+                if let firstIndex2 = fg_u_no_list.firstIndex(of: invite_uno) {
+                    fg_u_no_list.remove(at: firstIndex2)
                 }
                 
                 
@@ -270,9 +320,15 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(index_down) 팔로워인덱스 다윤 셀 삭제")
             print("\(index_member) 팔로워인덱스 멤버 셀 삭제")
             print("\(f_key)팔로워인덱스 키 셀 삭제")
+            print("\(u_no_member) ㅋㅋㅋㅋ")
+            
+            print("\(fr_u_no_list)하이용 팔로워 셀 삭제")
+            print("\(fg_u_no_list)하이용 팔로워 셀 삳ㄱ제")
          //   print("\(index!) 셀 삭제")
             follower_check_member.updateValue(false, forKey: invite_id)
             print("\(follower_check_member) 여기는 팔로워 false 하는 목록")
+           
+            
             if following_check_member[invite_id] != nil {
               
                 following_check_member.updateValue(false, forKey: invite_id)
@@ -281,6 +337,8 @@ class C_FollowTableViewCell: UITableViewCell {
             print("\(following_check_member) 여기는 팔로잉 false 하는 목록")
             invite_confirm = true // 다시 바꿔주기
         }
+        
+        
         
      
      

@@ -47,14 +47,19 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
     }//viewDidLoad
     
     override func viewWillAppear(_ animated: Bool){
+        
         sm_funtio()
        
+        
         makeSingleTouch() //세그 먼트 조절하기
-      
+        
+        
         print("여기는 테이블븅의 viewWillAppear")
         // 테이블뷰 실제 실헹
+        
         g_tv_followlist.delegate = self
         g_tv_followlist.dataSource = self
+        
         
         sm_follow.selectedSegmentIndex = 0
         sm_num  = 0
@@ -143,8 +148,25 @@ class Teammembers_AddViewController: UIViewController, UISearchBarDelegate, UISe
             print("\(index_down) 팀")
        
             subway  = key + f_key
-            subway2_down = removeDuplication(in: subway)
             
+            subway2_down = removeDuplication(in: subway)
+          
+          
+            
+            for i in fr_u_no_list {
+                    if final_u_nolist.contains(i) == false {
+                        final_u_nolist.append(i)
+                    }
+                }
+            for i in fg_u_no_list {
+                    if final_u_nolist.contains(i) == false {
+                        final_u_nolist.append(i)
+                    }
+                }
+            
+      
+       
+            print("\(final_u_nolist)하이용 최종")
            print("\(subway2_down) 집합")
            
             
@@ -364,6 +386,7 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         cell.invite_id = "\(item.u_id!)"
         cell.invite_name = "\(item.u_name!)"
         cell.invite_img = "\(item.u_img!)"
+        cell.invite_uno = Int("\(item.u_no!)")
        
 
         

@@ -25,14 +25,14 @@ class Group_gno_DB{
         urlPath = urlPath + urlAdd
         urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         print("URL is : \(urlPath)")
-        print("희지 \(urlPath)")
+        print("\(urlPath) 정평 인원수")
         let url: URL = URL(string: urlPath)!
         let defaultSession = URLSession(configuration: .default)
         let task = defaultSession.dataTask(with: url){data, response, error in
             if error != nil{
                 print("Failed to download data")
             }else{
-              
+                print("사랑 7")
                 self.parseJSON(data!)
             }
             
@@ -67,10 +67,10 @@ class Group_gno_DB{
             }
         }
       
-        
+        print("사랑 8")
         DispatchQueue.main.async(execute: {() -> Void in
             self.delegate.G_noitemDownloaded(items: locations)
-    
+            print("\(locations.count) 정평 인원수 카운트는??")
         })
         
     }

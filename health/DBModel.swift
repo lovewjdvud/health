@@ -22,6 +22,7 @@ class DBModel: NSObject{
     var u_id: String?
     var u_name: String?
     var u_img: String?
+    var u_no: String?
     
     override init() {
         
@@ -43,10 +44,20 @@ class DBModel: NSObject{
  } //그룹 인원 추가할때 follow 정보 가져오기
     
     //
+    init(u_id: String, u_name: String, u_img:String, u_no:String) {
+     self.u_id = u_id
+     self.u_name = u_name
+     self.u_img = u_img
+     self.u_no = u_no
+ 
+ }
+    
+    // 팔로우 o , t
     init(u_id: String, u_name: String, u_img:String) {
      self.u_id = u_id
      self.u_name = u_name
      self.u_img = u_img
+
  
  }
 

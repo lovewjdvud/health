@@ -22,7 +22,7 @@ class GrouplistDB{
         let urlAdd = "?user_u_no=\(user_u_no)"
         urlPath = urlPath + urlAdd
         urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        print("URL is : \(urlPath)")
+        print("\(urlPath)정평 그룹리스트")
         let url: URL = URL(string: urlPath)!
         let defaultSession = URLSession(configuration: .default)
         let task = defaultSession.dataTask(with: url){data, response, error in
@@ -30,6 +30,7 @@ class GrouplistDB{
                 print("Failed to download data")
             }else{
                 self.parseJSON(data!)
+                print("사랑 2")
                 
             }
             
@@ -62,7 +63,7 @@ class GrouplistDB{
                 let query = DBModel(g_title: g_title,g_finishday: g_finishday, g_no: g_no)
                 locations.add(query)
               
-               
+                print("사랑 3")
             } else {
                 print("DATA is nil")
             }
@@ -75,8 +76,8 @@ class GrouplistDB{
            var g_count = 0
             g_count =  locations.count
             self.delegate.itemDownloaded(items: locations, g_list_cout: g_count)
-            print("\(locations.count) 이녀석의 카운트는??")
-          
+            print("\(locations.count) 정평 그룹리스트 카운트는??")
+            print("사랑 4")
             
         })
         
