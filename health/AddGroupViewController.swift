@@ -144,10 +144,10 @@ class AddGroupViewController: UIViewController {
         currentdate_make = "\(dateFormatter.string(from: date))"
         
         
-        
+    
         let gm_Follow_o = GM_make()
      
-        let test = [1, 2, 3, 4]
+        final_u_nolist.append(Share.user_no)
         
         //finiday: "\(g_finiday)", title: "\(addGroup_tf_title.text!)" ,idlist: subway2_down
         

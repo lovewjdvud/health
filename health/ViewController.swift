@@ -73,21 +73,69 @@ class ViewController: UIViewController {
         
         
         
-        //인원수 가져오기
-        print("사랑 6")
-                 let g_noDB = Group_gno_DB()
-                 g_noDB.delegate = self
-                 g_noDB.Group_gno_DBdownItems(user_u_no: Share.user_no) // 실행
+//        //인원수 가져오기
+//        print("사랑 6")
+//                 let g_noDB = Group_gno_DB()
+//                 g_noDB.delegate = self
+//                 g_noDB.Group_gno_DBdownItems(user_u_no: Share.user_no) // 실행
         print("사랑 ")
            // self.tableView_GroupList.reloadData()
         
         
     }// viewWillAppear
     
-    func test()  {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
         
+          if segue.identifier == "sgdetailTeam" {
+            
+            
+            let cell = sender as! C_AddGroupTableViewCell
+            let indexPath = self.tableView_GroupList.indexPath(for: cell)
+        
+            let detailView  = segue.destination as! Detail_ViewController
+            let item: DBModel = GrouplistItem[indexPath!.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
+            
+            let finishdate  = Date_Calculate(finishdate: item.g_finishday!, check: 0) // 종료일 계산해서 보내기 ㅇ
+
+            
+            
+            
+            detailView.finshdate = ("\(finishdate)")
+            detailView.De_g_no = item.g_no!
     }
-  
+    }
+
+    // 날짜 계산
+    func Date_Calculate(finishdate : String, check: Int) -> Int {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone.current
+        currentdate = "\(dateFormatter.string(from: date))"
+        print(dateFormatter.string(from: date))
+       
+
+        let endDate = dateFormatter.date(from:"\(finishdate)")!
+        let startDate = dateFormatter.date(from:"\(currentdate)")!// 이친구가 앞
+      //  print("\(finishdate) 안녕 데이트안에")
+      //  print("\(currentdate) 안녕 데이트안에")
+        var interval = startDate.timeIntervalSince(endDate)
+        var days = Int(interval / 86400)
+        
+        
+        if check == 0 {
+            
+            interval = endDate.timeIntervalSince(startDate)
+            days = Int(interval / 86400)
+            
+        }
+     
+        
+        return days
+    }
+    
 }//ViewController
 
 
@@ -116,47 +164,27 @@ extension ViewController : GrouplistDBProtocol {
     }
 
 
-
-extension ViewController : Group_gno_DBProtocol {
- 
-    func G_noitemDownloaded(items: NSMutableArray) {
-        
-        
-        G_no_Item = items
-        print("\(G_no_Item.count) 정평 그룹 인원수")
-     
-     // self.tableView_GroupList.reloadData()
-        print("사랑 10")
-        
-        
-    }
-}
+//
+//extension ViewController : Group_gno_DBProtocol {
+//
+//    func G_noitemDownloaded(items: NSMutableArray) {
+//
+//
+//        G_no_Item = items
+//        print("\(G_no_Item.count) 정평 그룹 인원수")
+//     
+//     // self.tableView_GroupList.reloadData()
+//        print("사랑 10")
+//
+//
+//    }
+//}
 
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
     
     
     
-    // 날짜 계산
-    func Date_Calculate(finishdate : String) -> Int {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone.current
-        currentdate = "\(dateFormatter.string(from: date))"
-        print(dateFormatter.string(from: date))
-       
-
-        let endDate = dateFormatter.date(from:"\(finishdate)")! // 이친구가 앞
-        let startDate = dateFormatter.date(from:"\(currentdate)")!
-      //  print("\(finishdate) 안녕 데이트안에")
-      //  print("\(currentdate) 안녕 데이트안에")
-        let interval = startDate.timeIntervalSince(endDate)
-        let days = Int(interval / 86400)
-        
-     
-        
-        return days
-    }
+    
 //                  테이블뷰                                    //
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -178,9 +206,9 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
 //        DispatchQueue.global().async { [self] in
       print("사랑 테이블")
         let item: DBModel = GrouplistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
-        let item2: DBModel = G_no_Item[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
+       // let item2: DBModel = G_no_Item[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
        
-        let cal_result = Date_Calculate(finishdate: "\(item2.m_registerday!)") // 날짜 넣기
+        let cal_result = Date_Calculate(finishdate: "\(item.m_registerday!)", check: 1) // 날짜 넣기
         print("\(item.g_title!) 안녕")
         
       
@@ -188,9 +216,9 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
        
         cell.lbl_group_title.text? = "\(item.g_title!)" // 팀이름
         cell.lbl_group_finshday.text? = "\(item.g_finishday!)" // 팀 종료 날짜
-        cell.lbl_group_lastDay.text? = "\(cal_result)일" // 지난날들
+        cell.lbl_group_lastDay.text? = "\(cal_result)일차" // 지난날들
         
-        cell.lbl_group_number.text? = "\(item2.count!)명"
+        cell.lbl_group_number.text? = "\(item.count!)명"
         return cell //리턴으로 셀의 값을 넣어 보낸다
 } //tableView
 

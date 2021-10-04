@@ -59,7 +59,7 @@ class Group_gno_DB{
             if let m_registerday = jsonElement["m_registerday"] as? String,
                let count = jsonElement["count"] as? String
             {
-                let query = DBModel(count: count, m_registerday: m_registerday)
+                let query = DBModel(count: Int(count)!, m_registerday: m_registerday)
               
                 locations.add(query)
             } else {

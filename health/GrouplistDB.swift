@@ -39,12 +39,20 @@ class GrouplistDB{
         task.resume() //resume을 실해하면 json으로 데이터를 가져온다
     }
     
+    
+    
     //어싱크 방식 은 dispatch 가 들어감
+    
+    
+    
+    
     func parseJSON(_ data: Data) {
+        
         var jsonResult = NSArray()
         do{
             //swift 에서 json 쓰는 방법
             jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSArray
+     
         }catch let error as NSError{
             print(error)
         }
@@ -52,15 +60,21 @@ class GrouplistDB{
         var jsonElement = NSDictionary()
         let locations = NSMutableArray()
         
+        
+        
         for i in 0..<jsonResult.count{
+            
             jsonElement = jsonResult[i] as! NSDictionary
+           
             if let g_title = jsonElement["g_title"] as? String,
                let g_finishday = jsonElement["g_finishday"] as? String,
-               let g_no = jsonElement["g_no"] as? String
+               let g_no = jsonElement["g_no"] as? String,
+               let m_registerday = jsonElement["m_registerday"] as? String,
+               let count = jsonElement["count"] as? String
             
         
             {
-                let query = DBModel(g_title: g_title,g_finishday: g_finishday, g_no: g_no)
+                let query = DBModel(g_title: g_title,g_finishday: g_finishday, g_no: Int(g_no)!,count: Int(count)!, m_registerday: m_registerday)
                 locations.add(query)
               
                 print("사랑 3")
