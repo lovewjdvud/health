@@ -20,6 +20,8 @@ class C_memenAddTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        img_memberAdd.layer.cornerRadius = 39.6
+        img_memberAdd.clipsToBounds = true
     }
 
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69082711270ACDAA00799E67 /* Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69082710270ACDAA00799E67 /* Detail_ViewController.swift */; };
+		69082713270ADF9500799E67 /* C_DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */; };
 		6916821A26E9B19800D33663 /* C_memenAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */; };
 		6919C24526DCE6FA007693D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C24426DCE6FA007693D4 /* AppDelegate.swift */; };
 		6919C24726DCE6FA007693D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C24626DCE6FA007693D4 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 		6919C27926DD1316007693D4 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C27826DD1316007693D4 /* MypageViewController.swift */; };
 		6919C27B26DD1331007693D4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C27A26DD1331007693D4 /* CalendarViewController.swift */; };
 		6920CB9626DFD02700B6EA1C /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */; };
+		6922CBF2270C02E700BC5060 /* Detail_DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6922CBF1270C02E700BC5060 /* Detail_DB.swift */; };
 		6923AC7D26E0979C00287B22 /* C_AddGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */; };
 		6923AC7F26E09EF300287B22 /* GrouplistDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC7E26E09EF300287B22 /* GrouplistDB.swift */; };
 		6923AC8126E09F0200287B22 /* DBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC8026E09F0200287B22 /* DBModel.swift */; };
@@ -25,6 +27,9 @@
 		6923AC8526E0B68800287B22 /* Group_gno_DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC8426E0B68800287B22 /* Group_gno_DB.swift */; };
 		692E1B8626E5DF2900EAA9F2 /* C_FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E1B8526E5DF2900EAA9F2 /* C_FollowTableViewCell.swift */; };
 		692E1B8826E5FA5F00EAA9F2 /* GM_FollowlistDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */; };
+		694152F2270EDCC6005A25B4 /* btn_like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694152F1270EDCC6005A25B4 /* btn_like.swift */; };
+		694949CE270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */; };
+		694949D027101D5000C41C59 /* Detailsub_DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694949CF27101D5000C41C59 /* Detailsub_DB.swift */; };
 		696A748D26DE2A77009051A7 /* Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696A748C26DE2A77009051A7 /* Custom.swift */; };
 		69A843FE26E78D8A0096B6F0 /* B_GFollowlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A843FD26E78D8A0096B6F0 /* B_GFollowlist.swift */; };
 		69CF90B626FDCA9D00CCC574 /* GM_follow_o.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */; };
@@ -36,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		69082710270ACDAA00799E67 /* Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_ViewController.swift; sourceTree = "<group>"; };
+		69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_DailyTableViewCell.swift; sourceTree = "<group>"; };
 		6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_memenAddTableViewCell.swift; sourceTree = "<group>"; };
 		6919C24126DCE6FA007693D4 /* health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6919C24426DCE6FA007693D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +54,7 @@
 		6919C27826DD1316007693D4 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		6919C27A26DD1331007693D4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
+		6922CBF1270C02E700BC5060 /* Detail_DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_DB.swift; sourceTree = "<group>"; };
 		6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_AddGroupTableViewCell.swift; sourceTree = "<group>"; };
 		6923AC7E26E09EF300287B22 /* GrouplistDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrouplistDB.swift; sourceTree = "<group>"; };
 		6923AC8026E09F0200287B22 /* DBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBModel.swift; sourceTree = "<group>"; };
@@ -55,6 +62,9 @@
 		6923AC8426E0B68800287B22 /* Group_gno_DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group_gno_DB.swift; sourceTree = "<group>"; };
 		692E1B8526E5DF2900EAA9F2 /* C_FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_FollowTableViewCell.swift; sourceTree = "<group>"; };
 		692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_FollowlistDB.swift; sourceTree = "<group>"; };
+		694152F1270EDCC6005A25B4 /* btn_like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = btn_like.swift; sourceTree = "<group>"; };
+		694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_DetailsubTableViewCell.swift; sourceTree = "<group>"; };
+		694949CF27101D5000C41C59 /* Detailsub_DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detailsub_DB.swift; sourceTree = "<group>"; };
 		696A748C26DE2A77009051A7 /* Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Custom.swift; sourceTree = "<group>"; };
 		69A843FD26E78D8A0096B6F0 /* B_GFollowlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_GFollowlist.swift; sourceTree = "<group>"; };
 		69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_follow_o.swift; sourceTree = "<group>"; };
@@ -102,6 +112,8 @@
 				6919C25226DCE6FB007693D4 /* Info.plist */,
 				6919C24826DCE6FA007693D4 /* ViewController.swift */,
 				69082710270ACDAA00799E67 /* Detail_ViewController.swift */,
+				69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */,
+				694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */,
 				69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */,
 				692E1B8526E5DF2900EAA9F2 /* C_FollowTableViewCell.swift */,
 				6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */,
@@ -116,10 +128,13 @@
 				69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */,
 				69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */,
 				69E2A3C52704A6F500F22C98 /* GM_make.swift */,
+				6922CBF1270C02E700BC5060 /* Detail_DB.swift */,
+				694949CF27101D5000C41C59 /* Detailsub_DB.swift */,
 				6923AC8026E09F0200287B22 /* DBModel.swift */,
 				6923AC8226E0AB0600287B22 /* Share.swift */,
 				69A843FD26E78D8A0096B6F0 /* B_GFollowlist.swift */,
 				69FA8ED726EB29A000DA7DBA /* EditDelegate.swift */,
+				694152F1270EDCC6005A25B4 /* btn_like.swift */,
 			);
 			path = health;
 			sourceTree = "<group>";
@@ -203,18 +218,23 @@
 				6919C24926DCE6FA007693D4 /* ViewController.swift in Sources */,
 				6916821A26E9B19800D33663 /* C_memenAddTableViewCell.swift in Sources */,
 				6919C24526DCE6FA007693D4 /* AppDelegate.swift in Sources */,
+				694949CE270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift in Sources */,
 				6920CB9626DFD02700B6EA1C /* AddGroupViewController.swift in Sources */,
+				6922CBF2270C02E700BC5060 /* Detail_DB.swift in Sources */,
 				69FA8EDE26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift in Sources */,
 				6923AC8526E0B68800287B22 /* Group_gno_DB.swift in Sources */,
 				6919C24726DCE6FA007693D4 /* SceneDelegate.swift in Sources */,
 				692E1B8626E5DF2900EAA9F2 /* C_FollowTableViewCell.swift in Sources */,
 				69FA8ED826EB29A000DA7DBA /* EditDelegate.swift in Sources */,
 				6919C27926DD1316007693D4 /* MypageViewController.swift in Sources */,
+				694949D027101D5000C41C59 /* Detailsub_DB.swift in Sources */,
 				69E2A3C62704A6F500F22C98 /* GM_make.swift in Sources */,
 				6923AC8126E09F0200287B22 /* DBModel.swift in Sources */,
+				694152F2270EDCC6005A25B4 /* btn_like.swift in Sources */,
 				69CF90B826FDCAA800CCC574 /* GM_follow_t.swift in Sources */,
 				69082711270ACDAA00799E67 /* Detail_ViewController.swift in Sources */,
 				6923AC7F26E09EF300287B22 /* GrouplistDB.swift in Sources */,
+				69082713270ADF9500799E67 /* C_DailyTableViewCell.swift in Sources */,
 				692E1B8826E5FA5F00EAA9F2 /* GM_FollowlistDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

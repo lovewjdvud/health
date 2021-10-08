@@ -32,8 +32,11 @@ class ViewController: UIViewController {
         
          tableView_GroupList.delegate = self
          tableView_GroupList.dataSource = self // 테이블뷰 실제 실헹
-        
+        tableView_GroupList.rowHeight = 95
      
+        tableView_GroupList.separatorStyle = .none
+        tableView_GroupList.showsVerticalScrollIndicator = false
+        
       //  test()
         
 
@@ -84,11 +87,14 @@ class ViewController: UIViewController {
         
     }// viewWillAppear
     
+    
+    /// 클릭스 디테일 뷰 보내기
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
           if segue.identifier == "sgdetailTeam" {
+            
             
             
             let cell = sender as! C_AddGroupTableViewCell
@@ -97,14 +103,18 @@ class ViewController: UIViewController {
             let detailView  = segue.destination as! Detail_ViewController
             let item: DBModel = GrouplistItem[indexPath!.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
             
-            let finishdate  = Date_Calculate(finishdate: item.g_finishday!, check: 0) // 종료일 계산해서 보내기 ㅇ
+            let finishdate  = Date_Calculate(finishdate: item.g_finishday!, check: 0) // 종료일 계산해서 보내기
 
             
             
             
             detailView.finshdate = ("\(finishdate)")
             detailView.De_g_no = item.g_no!
+            detailView.teamNum = item.count!
     }
+        
+        
+        
     }
 
     // 날짜 계산
@@ -194,17 +204,17 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
 // 몇개의 셀을 구현할지 정하는 것
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return GrouplistItem.count
+        return GrouplistItem.count 
     }
 
 // 실제 셀의 값으 넣는곳
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! C_AddGroupTableViewCell
 
-       
+        cell.content_view.layer.cornerRadius = cell.content_view.frame.height / 2
 //
 //        DispatchQueue.global().async { [self] in
-      print("사랑 테이블")
+     
         let item: DBModel = GrouplistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
        // let item2: DBModel = G_no_Item[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
        

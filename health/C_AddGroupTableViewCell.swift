@@ -20,6 +20,7 @@ class C_AddGroupTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lbl_group_finshday: UILabel!
     @IBOutlet weak var lbl_group_lastDay: UILabel!
+    @IBOutlet weak var content_view: UIView!
     
     
 

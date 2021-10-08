@@ -75,6 +75,7 @@ class GM_FollowlistDB{
             
            var g_count = 0
             g_count =  locations.count
+            print("사랑 4 \(locations)")
             self.delegate.GM_FollowlistDBitemDownloaded(items: locations, g_list_cout: g_count)
             print("\(locations.count) 팔로잉 팔로우수는????")
             

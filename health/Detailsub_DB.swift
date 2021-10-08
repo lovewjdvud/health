@@ -1,28 +1,27 @@
 //
-//  GrouplistDB.swift
+//  Detailsub_DB.swift
 //  health
 //
-//  Created by Songjeongpyeong on 2021/09/02.
+//  Created by Songjeongpyeong on 2021/10/08.
 //
 
 import Foundation
 
-
-protocol GrouplistDBProtocol{
-    func itemDownloaded(items: NSMutableArray, g_list_cout: Int)
+protocol Detailsub_DBProtocol{
+    func detailsub_itemDownloaded(items: NSMutableArray, g_list_cout: Int)
 }
 
 
-class GrouplistDB{
-    
-    var delegate: GrouplistDBProtocol!
-    var urlPath = "\(Share.urlIP)Grouplist.jsp"
+class Detailsub_DB{
    
-    func GrouplistDBdownItems(user_u_no: Int){
-        let urlAdd = "?user_u_no=\(user_u_no)"
+    var delegate: Detailsub_DBProtocol!
+    var urlPath = "\(Share.urlIP)Detail_name.jsp"
+   
+    func DetailsublistdownItems(user_u_no: Int ,g_no: Int){
+        let urlAdd = "?user_u_no=\(user_u_no)&g_no=\(g_no)"
         urlPath = urlPath + urlAdd
         urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        print("\(urlPath)정평 그룹리스트")
+        print("\(urlPath) Detail 서브 그룹리스트")
         let url: URL = URL(string: urlPath)!
         let defaultSession = URLSession(configuration: .default)
         let task = defaultSession.dataTask(with: url){data, response, error in
@@ -35,8 +34,9 @@ class GrouplistDB{
             }
             
         }
-        
+        print("사랑 타스트 시작")
         task.resume() //resume을 실해하면 json으로 데이터를 가져온다
+        print("사랑 타스크 끝")
     }
     
     
@@ -66,18 +66,18 @@ class GrouplistDB{
             
             jsonElement = jsonResult[i] as! NSDictionary
            
-            if let g_title = jsonElement["g_title"] as? String,
-               let g_finishday = jsonElement["g_finishday"] as? String,
-               let g_no = jsonElement["g_no"] as? String,
-               let m_registerday = jsonElement["m_registerday"] as? String,
-               let count = jsonElement["count"] as? String
+            if let detailsub_u_id = jsonElement["u_id"] as? String,
+               let detailsub_u_nanme = jsonElement["u_name"] as? String
+               
             
         
             {
-                let query = DBModel(g_title: g_title,g_finishday: g_finishday, g_no: Int(g_no)!,count: Int(count)!, m_registerday: m_registerday)
+             
+                
+                let query = DBModel(detailsub_u_id: detailsub_u_id, detailsub_u_nanme:detailsub_u_nanme)
                 locations.add(query)
-              
-                print("사랑 3")
+               
+    
             } else {
                 print("DATA is nil")
             }
@@ -86,13 +86,13 @@ class GrouplistDB{
       
        
         DispatchQueue.main.async(execute: {() -> Void in
-            
+            print("사랑 4 \(locations)")
            var g_count = 0
             g_count =  locations.count
-            print("사랑 4 \(locations)")
-            self.delegate.itemDownloaded(items: locations, g_list_cout: g_count)
-            print("\(locations.count) 정평 그룹리스트 카운트는??")
-            print("사랑 4")
+            
+            self.delegate.detailsub_itemDownloaded(items: locations, g_list_cout: g_count)
+            print("\(locations.count) 정평 디테일서브 카운트는??")
+         
             
         })
         
