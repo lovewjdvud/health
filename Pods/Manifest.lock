@@ -1,0 +1,24 @@
+PODS:
+  - PryntTrimmerView (4.0.2)
+  - SteviaLayout (4.7.3)
+  - YPImagePicker (5.0.0):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
+
+DEPENDENCIES:
+  - YPImagePicker
+
+SPEC REPOS:
+  trunk:
+    - PryntTrimmerView
+    - SteviaLayout
+    - YPImagePicker
+
+SPEC CHECKSUMS:
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
+
+PODFILE CHECKSUM: 1b2e5a64f742cd3a04f1302ad35a7ae1eb4b226f
+
+COCOAPODS: 1.10.2
