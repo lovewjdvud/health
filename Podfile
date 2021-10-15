@@ -6,6 +6,13 @@ target 'health' do
  
   # 사진라이
   pod 'YPImagePicker'
+  pod 'FSCalendar'
+	
+  # 바텀시트
+  pod 'MaterialComponents/BottomSheet'
+  
+  # 서버통신
+  pod 'Alamofire', '~> 5.2'
 
   use_frameworks!
 

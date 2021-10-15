@@ -103,7 +103,13 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     } //photo
 
     func uploadstart()  {
-        let imageData: Data = self.img_upload.image!.pngData()! // 바이트 추출
+        guard  img_upload.image != nil else {
+          print("실패")
+            return
+        }// 바이트 추출
+        let imageData: Data = self.img_upload.image!.pngData()!
+        
+  //      guard condition1 else { return print("Bye!") }
         
         print("\(imageData)")
         let imageStr: String = imageData.base64EncodedString()
@@ -114,11 +120,15 @@ class UploadViewController: UIViewController, UITextViewDelegate {
         present(alert, animated: true, completion: nil)
  
         let urlString: String = "imageStr=" + imageStr
-    
-        var request: URLRequest = URLRequest(url: URL(string: "http://172.30.1.6:8888/ tutorials/single-multiple-image-upload/index.php")!)
+     
+        var request: URLRequest = URLRequest(url: URL(string: "\(Share.urlIP)Uploadimg.jsp")!)
+     
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         request.httpBody = urlString.data(using: .utf8)
+        
+        
+        
     }
   
 } //UploadViewController

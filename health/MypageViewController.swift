@@ -2,17 +2,24 @@
 //  MypageViewController.swift
 //  health
 //
-//  Created by 송정평 on 2021/08/30.
+//  Created by Songjeongpyeong on 2021/10/13.
 //
 
 import UIKit
 
 class MypageViewController: UIViewController {
 
+    @IBOutlet weak var lbl_following: UILabel!
+    
+    @IBOutlet weak var lbl_follower: UILabel!
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+     
+        
     }
     
 
