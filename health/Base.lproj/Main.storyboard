@@ -130,7 +130,7 @@
                     <navigationItem key="navigationItem" id="Lgb-CF-L1u">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="tAN-TL-BdR">
                             <connections>
-                                <segue destination="YNG-00-SeZ" kind="show" id="8pR-Ti-v62"/>
+                                <segue destination="YNG-00-SeZ" kind="show" identifier="sgUpload" id="8pR-Ti-v62"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -151,33 +151,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5LS-ud-EvX">
-                                <rect key="frame" x="20" y="302" width="372" height="156"/>
+                                <rect key="frame" x="53" y="329" width="312" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Fv-YW-kV7">
-                                <rect key="frame" x="20" y="545" width="372" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.7710866263911984" green="0.84520594095482249" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.7617500073970831" green="0.90840346262069427" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWE-4s-tJw">
-                                <rect key="frame" x="71" y="112" width="237" height="161"/>
+                                <rect key="frame" x="98" y="124" width="218" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSN-ec-AI9">
+                                <rect key="frame" x="20" y="566" width="374" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_upload:" destination="YNG-00-SeZ" eventType="touchUpInside" id="uOw-5L-pKQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="upP-CG-loe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="X1v-vW-3br"/>
                     <connections>
+                        <outlet property="btn_upload2" destination="kSN-ec-AI9" id="Gd3-HP-P9j"/>
                         <outlet property="img_upload" destination="IWE-4s-tJw" id="SZO-SC-vfw"/>
-                        <outlet property="tagtextfield_upload" destination="5Fv-YW-kV7" id="BSa-po-zf6"/>
                         <outlet property="textView_upload" destination="5LS-ud-EvX" id="mIr-ep-Hio"/>
                     </connections>
                 </viewController>

@@ -7,41 +7,62 @@
 
 import UIKit
 import YPImagePicker
+import Alamofire
+
 
 class UploadViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var img_upload: UIImageView!
     @IBOutlet weak var textView_upload: UITextView!
-    @IBOutlet weak var tagtextfield_upload: UITextView!
+    @IBOutlet weak var btn_upload2: UIButton!
     
+    
+    var imageData: Data!
+    
+    var currentDate = ""
+    var up_g_no: Int!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photo() // 갤러리 불러오기
         
+        btn_upload2.layer.cornerRadius = 30 // 버튼 모서리 깍기
         
-        photo()
-        
-        
-        placeholderSetting()
-        // Do any additional setup after loading the view.
-        
-        
+                print("넘버 \(up_g_no!) 현재날짜 \(currentDate) 윤희지")
     }
     
+    
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool){
+    
+       
+        
+        placeholderSetting() // 히든 텍스트
+    // 텍스트뷰 테두리 설정
+      //  self.textView_upload.layer.borderWidth = 1.0
+        self.textView_upload.layer.borderColor = UIColor.black.cgColor
+        self.textView_upload.layer.cornerRadius = 10
+
+      
+    }
+    
+    
+    
+    @IBAction func btn_upload(_ sender: UIButton) {
+        
+        self.uploadstart() // 업로드 시작
+    }
     
     func placeholderSetting() {
         textView_upload.delegate = self // txtvReview가 유저가 선언한 outlet
         textView_upload.text = "문구를 입력해주세요"
         textView_upload.textColor = UIColor.lightGray
-            
-        
-        
-        
-        }
-        
-        
+       
+    }
         // TextView Place Holder
         func textViewDidBeginEditing(_ textView: UITextView) {
             if textView_upload.textColor == UIColor.lightGray {
@@ -77,59 +98,57 @@ class UploadViewController: UIViewController, UITextViewDelegate {
 //                print(photo.originalImage) // original image selected by the user, unfiltered
 //                print(photo.modifiedImage) // Transformed image, can be nil
 //                print(photo.exifMeta) // Print exif meta data of original image.
-                print("사진 \(photo.image) 사진") // Print exif meta data of original image.
-                print("2")
+                
                 // 프사 이미지 넣기
                 self.img_upload.image = photo.image
-                print("3")
             }
-            print("4")
+          
             // 피커 창 닫기
             picker.dismiss(animated: true, completion: nil)
-            print("5")
+           
             
-          
-            self.uploadstart() // 업로드 시작
+           
         }
         // 사진 선택 창 보여주가
-        print("6")
         present(picker, animated: true, completion: nil)
-      
-       // let imageData: Data = img_upload.image!.pngData()!
-//        let imageStr: String = imageData.base64EncodedString()
-//        let urlString: String = "imageStr=" + imageStr
-//        print("\(urlString) 유알엘")
-        print("7")
+
     } //photo
 
+    
+    // 사진 업로드 과정
     func uploadstart()  {
+        
         guard  img_upload.image != nil else {
           print("실패")
             return
         }// 바이트 추출
-        let imageData: Data = self.img_upload.image!.pngData()!
+        imageData = self.img_upload.image?.jpegData(compressionQuality: 1)
         
-  //      guard condition1 else { return print("Bye!") }
+        guard self.imageData != nil else {
+            print("널값")
+        return
+        }
         
-        print("\(imageData)")
-        let imageStr: String = imageData.base64EncodedString()
-      //  print("\(imageStr)")
+        let urlpath =  "\(Share.urlIP)Uploadimg.jsp?up_g_no=\(up_g_no!)&currentDate=\(currentDate)"
+        print("\(urlpath) 윤희지")
         
-        // 로딩중 알트
-        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
- 
-        let urlString: String = "imageStr=" + imageStr
-     
-        var request: URLRequest = URLRequest(url: URL(string: "\(Share.urlIP)Uploadimg.jsp")!)
-     
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = urlString.data(using: .utf8)
         
+        AF.upload(multipartFormData: { multipartFormData in
+        
+            multipartFormData.append(self.imageData, withName:"Name", fileName: "wjdvud.jpg", mimeType: "image/jpg")
+            
+        }, to: URL(string: "\(Share.urlIP)Uploadimg.jsp?up_g_no=\(up_g_no!)&currentDate=\(currentDate)")!)
+        .responseJSON { response in
+            print("\(response) ")
+        }
         
         
     }
+    
+    
+    
+    
+    
   
 } //UploadViewController
 

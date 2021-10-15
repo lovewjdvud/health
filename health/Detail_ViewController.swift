@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import MaterialComponents.MaterialBottomSheet
 
 
 
@@ -34,6 +34,8 @@ class Detail_ViewController: UIViewController {
     
     var value = ""
     var test1 =  [0 : "정평", 2 : "정평"]
+    
+    var textView_write = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,24 +94,40 @@ class Detail_ViewController: UIViewController {
     
     func test()  {
         
-        
-        
-      
-            
-           
                 
                 detail_arr2 = detailsubarray_name.filter{!detail_name.contains($0)}
             
             
             print("\(detail_arr2) 끝아니야?")
-        
-        
-        
-        
+
         
 
     }
 //
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+          if segue.identifier == "sgUpload" {
+            
+            let uploadView  = segue.destination as! UploadViewController
+            
+            
+            uploadView.currentDate = "\(currentdate_detail)"
+            uploadView.up_g_no = De_g_no
+      
+          
+          }
+        
+        
+        
+    }
+    
+    
+    
+    
 
 } //Detail_ViewController
 
