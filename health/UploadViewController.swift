@@ -22,15 +22,22 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     var currentDate = ""
     var up_g_no: Int!
     
+    var textView_write = ""
     
-    
+    var filename_img = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         photo() // 갤러리 불러오기
         
         btn_upload2.layer.cornerRadius = 30 // 버튼 모서리 깍기
         
-                print("넘버 \(up_g_no!) 현재날짜 \(currentDate) 윤희지")
+                
+        guard up_g_no != nil || currentDate == "" else {
+            print("up_g_no, currentDate 둘중에 하나 널값")
+            return
+        }
+        
+        print("넘버 \(up_g_no!) 현재날짜 \(currentDate) 윤희지")
     }
     
     
@@ -55,6 +62,7 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     @IBAction func btn_upload(_ sender: UIButton) {
         
         self.uploadstart() // 업로드 시작
+        
     }
     
     func placeholderSetting() {
@@ -118,31 +126,42 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     // 사진 업로드 과정
     func uploadstart()  {
         
-        guard  img_upload.image != nil else {
+        filename_img = "\(currentDate)\(Share.user_no).jpg"
+        textView_write = textView_upload.text! // 텍스트뷰에 쓴글 가져오기
+        print("\(textView_write) 윤희지 텍스트")
+        guard  img_upload.image != nil else {  // 이미지 널값 구분
           print("실패")
+            
+            
             return
         }// 바이트 추출
-        imageData = self.img_upload.image?.jpegData(compressionQuality: 1)
+        imageData = self.img_upload.image?.jpegData(compressionQuality: 1) // 이미지 jpg데이터로 변형
         
         guard self.imageData != nil else {
             print("널값")
         return
         }
         
-        let urlpath =  "\(Share.urlIP)Uploadimg.jsp?up_g_no=\(up_g_no!)&currentDate=\(currentDate)"
+        let urlpath =  "\(Share.urlIP)Uploadimg.jsp?up_g_no=\(up_g_no!)&up_u_no=\(Share.user_no)&currentDate=\(currentDate)&filename_img=\(filename_img)&textView_write=\(textView_write)"// 업로드할 url
+        let url = urlpath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         print("\(urlpath) 윤희지")
         
         
+        
+        // 본격 업로드 시작
         AF.upload(multipartFormData: { multipartFormData in
         
-            multipartFormData.append(self.imageData, withName:"Name", fileName: "wjdvud.jpg", mimeType: "image/jpg")
+            multipartFormData.append(self.imageData, withName:"Name", fileName: "\(self.filename_img)", mimeType: "image/jpg")
             
-        }, to: URL(string: "\(Share.urlIP)Uploadimg.jsp?up_g_no=\(up_g_no!)&currentDate=\(currentDate)")!)
+        }, to: URL(string: url)!)
         .responseJSON { response in
             print("\(response) ")
+            self.navigationController?.popViewController(animated: true) // 화면 보내는 친구
         }
         
         
+        
+      
     }
     
     

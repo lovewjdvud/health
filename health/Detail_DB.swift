@@ -74,13 +74,14 @@ class Detail_DB{
                let up_c_count = jsonElement["up_c_count"] as? String,
                let p_uploadday = jsonElement["p_uploadday"] as? String,
                let d_u_img = jsonElement["u_img"] as? String,
-               let d_u_name = jsonElement["u_name"] as? String
+               let d_u_name = jsonElement["u_name"] as? String,
+               let d_u_no = jsonElement["u_no"] as? String
             
         
             {
              
                 
-                let query = DBModel(d_u_id: d_u_id, up_no: Int(up_no)!, up_contains: up_contains, up_img: up_img, up_like_count: Int(up_like_count)!, up_c_count: Int(up_c_count)!, p_uploadday: p_uploadday,d_u_img: d_u_img, d_u_name:d_u_name)
+                let query = DBModel(d_u_id: d_u_id, up_no: Int(up_no)!, up_contains: up_contains, up_img: up_img, up_like_count: Int(up_like_count)!, up_c_count: Int(up_c_count)!, p_uploadday: p_uploadday,d_u_img: d_u_img, d_u_name:d_u_name,d_u_no: Int(d_u_no)!)
                 locations.add(query)
                 print("사랑 아이디 \(d_u_id)")
                 print("사랑 3 \(up_no)")
@@ -91,6 +92,7 @@ class Detail_DB{
                 print("사랑 3 \(p_uploadday)")
                 print("사랑 끝 \(d_u_img)")
                 print("사랑 끝 \(d_u_name)")
+                print("사랑 끝 \(d_u_no)")
     
             } else {
                 print("DATA is nil")

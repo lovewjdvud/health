@@ -81,6 +81,9 @@
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                                         </preferredSymbolConfiguration>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="o41-HH-bWf" kind="show" id="vYO-K7-qJ4"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -128,19 +131,36 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Lgb-CF-L1u">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="tAN-TL-BdR">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="6Uc-6h-998">
                             <connections>
-                                <segue destination="YNG-00-SeZ" kind="show" identifier="sgUpload" id="8pR-Ti-v62"/>
+                                <segue destination="YNG-00-SeZ" kind="show" identifier="sgUpload" id="174-HJ-U3o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="item_uploadnext" destination="6Uc-6h-998" id="aHf-iS-bx8"/>
                         <outlet property="tableView_CD" destination="DCU-SX-ReL" id="ih7-ZK-1R3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s9Q-k6-dL4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3256.521739130435" y="44.866071428571423"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HyL-yC-uzH">
+            <objects>
+                <viewController id="o41-HH-bWf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EHi-tH-eDl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="yeP-34-xqx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="daX-na-nKH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cEV-Ta-PjQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2422" y="45"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="7jm-eQ-BSl">
@@ -551,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbl-uS-okA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511.5942028985507" y="784.82142857142856"/>
+            <point key="canvasLocation" x="1704" y="1215"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Fog-PD-7ox">
@@ -653,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uR3-rE-Oxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2736.231884057971" y="804.91071428571422"/>
+            <point key="canvasLocation" x="2458" y="1215"/>
         </scene>
         <!--Mypage View Controller-->
         <scene sceneID="HfA-Yb-Ssr">
@@ -750,6 +770,7 @@
         <image name="message" catalog="system" width="128" height="113"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="128" height="96"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

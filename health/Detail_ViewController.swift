@@ -14,6 +14,8 @@ import MaterialComponents.MaterialBottomSheet
 class Detail_ViewController: UIViewController {
 
     
+
+    @IBOutlet weak var item_uploadnext: UIBarButtonItem!
     
     @IBOutlet weak var tableView_CD: UITableView!
     var currentdate_detail = "" //
@@ -35,7 +37,7 @@ class Detail_ViewController: UIViewController {
     var value = ""
     var test1 =  [0 : "정평", 2 : "정평"]
     
-    var textView_write = ""
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +52,7 @@ class Detail_ViewController: UIViewController {
         
         
         
-        
+       
         self.title = "프로젝트 완료까지 \(finshdate)일 남았습니다"
      
         
@@ -61,7 +63,7 @@ class Detail_ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool){
 
-     
+        self.tableView_CD.reloadData()
         // 리셋
 //        detail_name.removeAll()
 //        detailsub_name.removeAll()
@@ -86,6 +88,10 @@ class Detail_ViewController: UIViewController {
         detaillistDB.delegate = self
         detaillistDB.Detail_DBlistdownItems(user_u_no: Share.user_no, g_no: De_g_no, currentdate: currentdate_detail)
         print("사랑 나옴")
+        
+        
+        
+       
         
     }
     
@@ -265,6 +271,11 @@ extension Detail_ViewController : Detail_DBProtocol {
             let detailitem: DBModel = DetaillistItem[i] as! DBModel
            
             detail_name.append("\(detailitem.d_u_name!)")
+            if(detailitem.d_u_no! == Share.user_no) {
+                item_uploadnext.isEnabled = false
+            }else {
+
+            }
         }
         }
         print("\(detail_name) 이건")
@@ -303,9 +314,16 @@ extension Detail_ViewController : Detailsub_DBProtocol {
            
             detailsub_name.updateValue(detailsub_item.detailsub_u_nanme!,forKey: "\(detailsub_item.detailsub_u_id!)")
             detailsubarray_name.append(detailsub_item.detailsub_u_nanme!)
+          
+         
         }
         }
         print("\(detailsub_name) 이건 서브")
+        
+        // 당일날 업로드를 했을 시 업도드 버튼을 숨긴다
+        
+        
+        
      
         self.tableView_CD.reloadData()
             

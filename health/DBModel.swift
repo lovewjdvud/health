@@ -34,6 +34,7 @@ class DBModel: NSObject{
     var p_uploadday: String?
     var d_u_img: String?
     var d_u_name: String?
+    var d_u_no: Int?
     
     
     
@@ -51,7 +52,7 @@ class DBModel: NSObject{
     
     
     // Detail 불러오는 값
-    init(d_u_id: String, up_no: Int, up_contains: String, up_img:String ,up_like_count: Int, up_c_count: Int, p_uploadday: String, d_u_img: String, d_u_name: String) {
+    init(d_u_id: String, up_no: Int, up_contains: String, up_img:String ,up_like_count: Int, up_c_count: Int, p_uploadday: String, d_u_img: String, d_u_name: String, d_u_no: Int) {
     
      self.d_u_id = d_u_id
      self.up_no = up_no
@@ -62,6 +63,7 @@ class DBModel: NSObject{
      self.p_uploadday = p_uploadday
      self.d_u_img = d_u_img
      self.d_u_name = d_u_name
+     self.d_u_no = d_u_no
 
  
  }
