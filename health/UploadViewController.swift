@@ -16,7 +16,7 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView_upload: UITextView!
     @IBOutlet weak var btn_upload2: UIButton!
     
-    
+   
     var imageData: Data!
     
     var currentDate = ""

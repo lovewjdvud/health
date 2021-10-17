@@ -11,6 +11,7 @@ import UIKit
 
 class Custom: UITabBarController,UITabBarControllerDelegate {
 
+    @IBOutlet weak var tabbar_view: UITabBar!
     required init?(coder: NSCoder) {
         super.init( coder: coder)
     }
