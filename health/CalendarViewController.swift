@@ -10,6 +10,9 @@ import FSCalendar
 
 class CalendarViewController: UIViewController {
 
+   
+    @IBOutlet weak var lbl_weight: UILabel!
+    
     @IBOutlet weak var Calender: FSCalendar!
     
     let dateFormatter = DateFormatter()
@@ -42,6 +45,10 @@ class CalendarViewController: UIViewController {
         
         Calender.delegate = self
         Calender.dataSource = self
+        
+        
+        
+        
         
     } //viewDidLoad
 
@@ -102,10 +109,10 @@ class CalendarViewController: UIViewController {
         // 서브 타이틀 컬러
         Calender.appearance.subtitleSelectionColor = .black
         
-        // 스와 이프로 여러개
-        Calender.swipeToChooseGesture.isEnabled = true
-        /// 여러개 선태ㅑㄱ
-        Calender.allowsMultipleSelection = true
+//        // 스와 이프로 여러개
+//        Calender.swipeToChooseGesture.isEnabled = true
+//        /// 여러개 선태ㅑㄱ
+//        Calender.allowsMultipleSelection = true
 
        
     }
@@ -130,6 +137,7 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(dateFormatter.string(from: date) + " 선택됨")
+        
     }
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -140,9 +148,12 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
             
             switch dateFormatter.string(from: date) {
+
+
             case dateFormatter.string(from: Date()):
                 return "오늘"
             case "2021-10-22":
+          
                 return "출근"
             case "2021-10-23":
                 return "지각"
@@ -151,7 +162,12 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
             default:
                 return nil
             }
-        }
+        
+        
+    }
+
+        
+        
     
     // 날짜 자체를 바꾸기
     func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
@@ -178,14 +194,14 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
         }
 
     // 최대 세개까지만 가능
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-            // 날짜 3개까지만 선택되도록
-            if calendar.selectedDates.count > 3 {
-                return false
-            } else {
-                return true
-            }
-        }
+//    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+//            // 날짜 3개까지만 선택되도록
+//            if calendar.selectedDates.count > 3 {
+//                return false
+//            } else {
+//                return true
+//            }
+//        }
     
 //    // 선택 해제 불가
 //    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {

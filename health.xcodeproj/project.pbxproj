@@ -28,6 +28,7 @@
 		692E1B8826E5FA5F00EAA9F2 /* GM_FollowlistDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */; };
 		692E74182719BC3900222AAB /* GM_Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E74172719BC3900222AAB /* GM_Upload.swift */; };
 		694152F2270EDCC6005A25B4 /* btn_like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694152F1270EDCC6005A25B4 /* btn_like.swift */; };
+		69468DA8271BE14D005FEBFB /* C_CommTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69468DA7271BE14D005FEBFB /* C_CommTableViewCell.swift */; };
 		694949CE270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */; };
 		694949D027101D5000C41C59 /* Detailsub_DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694949CF27101D5000C41C59 /* Detailsub_DB.swift */; };
 		694949D2271074F800C41C59 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694949D1271074F800C41C59 /* UploadViewController.swift */; };
@@ -68,6 +69,7 @@
 		692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_FollowlistDB.swift; sourceTree = "<group>"; };
 		692E74172719BC3900222AAB /* GM_Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_Upload.swift; sourceTree = "<group>"; };
 		694152F1270EDCC6005A25B4 /* btn_like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = btn_like.swift; sourceTree = "<group>"; };
+		69468DA7271BE14D005FEBFB /* C_CommTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_CommTableViewCell.swift; sourceTree = "<group>"; };
 		694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_DetailsubTableViewCell.swift; sourceTree = "<group>"; };
 		694949CF27101D5000C41C59 /* Detailsub_DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detailsub_DB.swift; sourceTree = "<group>"; };
 		694949D1271074F800C41C59 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				69082710270ACDAA00799E67 /* Detail_ViewController.swift */,
 				694949D1271074F800C41C59 /* UploadViewController.swift */,
 				692869D0271ABE5100E9580A /* CommentViewController.swift */,
+				69468DA7271BE14D005FEBFB /* C_CommTableViewCell.swift */,
 				69FB39CA2716C02D000339EC /* CalendarViewController.swift */,
 				69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */,
 				6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */,
@@ -291,6 +294,7 @@
 				696A748D26DE2A77009051A7 /* Custom.swift in Sources */,
 				69CF90B626FDCA9D00CCC574 /* GM_follow_o.swift in Sources */,
 				6923AC7D26E0979C00287B22 /* C_AddGroupTableViewCell.swift in Sources */,
+				69468DA8271BE14D005FEBFB /* C_CommTableViewCell.swift in Sources */,
 				692E74182719BC3900222AAB /* GM_Upload.swift in Sources */,
 				69A843FE26E78D8A0096B6F0 /* B_GFollowlist.swift in Sources */,
 				6919C24926DCE6FA007693D4 /* ViewController.swift in Sources */,
