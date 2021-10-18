@@ -26,13 +26,15 @@ class CalendarViewController: UIViewController {
     var callistItem: NSMutableArray = NSMutableArray()// DB에서 값 받아오는 곳
     
     var cal_date: [String] = []
-    
+    var currentdate_cal: String!
 ///    var calendar_w: FSCalendar()
     
     
     
     var dates: [Date] = []
     var events: [Date] = []
+    var fillDefaultColorsDictionary = [String : Int ]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +42,7 @@ class CalendarViewController: UIViewController {
         Calender.appearance.eventDefaultColor = UIColor.green
         Calender.appearance.eventSelectionColor = UIColor.green
     
-        
-//        let formatter = DateFormatter()
-//          formatter.locale = Locale(identifier: "ko_KR")
-//          formatter.dateFormat = "yyyy-MM-dd"
-//
-//          let xmas = formatter.date(from: "2021-10-25")
-//          let sampledate = formatter.date(from: "2019-12-22")
-//          dates = [xmas!, sampledate!]
+        // 현재 날짜 보내기 위함
 
    
         
@@ -67,6 +62,11 @@ class CalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool){
         
+        
+        // 마크 컬러
+        Calender.appearance.eventDefaultColor = UIColor.green
+                
+        
         // 운동기록 가져오기
         let calendar_listDB = CAL_calendarDB()
         calendar_listDB.delegate = self
@@ -74,7 +74,12 @@ class CalendarViewController: UIViewController {
     
       //  let item: DBModel = GrouplistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
         btn_recoard.isHidden = true
-        
+       
+        let date = Date()
+        let dateFormatter_cal = DateFormatter()
+        dateFormatter_cal.dateFormat = "yyyy-MM-dd"
+        dateFormatter_cal.timeZone = TimeZone.current
+         currentdate_cal = (dateFormatter_cal.string(from: date))
         
     }
 
@@ -169,6 +174,23 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
             return
         }
         
+        
+        
+        lbl_muscle.text? = ""
+        lbl_fat.text? = ""
+        lbl_weight.text? = ""
+        textView_write.text? = ""
+
+        lbl_fat.isHidden = true
+        lbl_muscle.isHidden = true
+        textView_write.isHidden = true
+        lbl_weight.isHidden = true
+
+        self.img_claendar.image = nil
+        self.btn_recoard.isHidden = false
+        
+        
+        
         for i in 0...cal_count-1 {
         let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
             if calitem.r_uploadDay! ==  dateFormatter.string(from: date) {
@@ -203,8 +225,19 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
                 
                
                 
-            }
+            } //if
+            
         } // for
+        
+        if currentdate_cal == dateFormatter.string(from: date){
+        
+            btn_recoard.text("오늘 운동 기록하러 가기!")
+            
+        }else {
+            btn_recoard.text("운동기록을 깜빡하셨나요?")
+        }
+        
+        
         
     }
     
@@ -226,48 +259,108 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
         self.img_claendar.image = nil
         self.btn_recoard.isHidden = false
 
+        
+        
+       
+        
+        
     }
     
-    // 날짜 밑에 넣기
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-            
+    
+//    // 날짜 밑에 넣기
+//    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+//
+//
+//            switch dateFormatter.string(from: date) {
+//
+//            case dateFormatter.string(from: Date()):
+//
+//
+//                return "오늘"
+//
+//            case "2021-10-22":
+//
+//                return "."
+//            case "2021-10-23":
+//                return "."
+//            case "2021-11-24":
+//                return "결근"
+//            default:
+//                return nil
+//            }
+//
+//
+//    }
+//    // 날짜 밑에 넣기
+//
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//
+//
+//        let formatter = DateFormatter()
+//        formatter.locale = Locale(identifier: "ko_KR")
+//        formatter.dateFormat = "yyyy-MM-dd"
+//
+//
+//
+//        for i in 0...cal_count-1 {
+//        let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+//            let xmas = formatter.date(from: "\(calitem.r_uploadDay!)")
+//       // let sampledate = formatter.date(from: "2021-10-2")
+//
+//
+//        dates = [xmas!]
+//
+//
+//
+//        if self.dates.contains(date){
+//                return 1
+//            }
+//        }
+//
+//
+//
+//            return 0
+//        }
+//
+//
+    
+    
+    
+    
+    //기본색상
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        //print("언제실행되는가?")
+        let key = self.dateFormatter.string(from: date)
    
-            switch dateFormatter.string(from: date) {
-
-            case dateFormatter.string(from: Date()):
-            
-                
-                return "오늘"
-                
-            case "2021-10-22":
-          
-                return "출근"
-            case "2021-11-23":
-                return "지각"
-            case "2021-11-24":
-                return "결근"
-            default:
-                return nil
-            }
         
+        if fillDefaultColorsDictionary[key] != nil{
+            return (#colorLiteral(red: 0.7231525779, green: 0.9139678478, blue: 1, alpha: 1))
+        }
+ 
+        switch key {
+        case currentdate_cal:
+            return  UIColor.red
+        default:
+            return  UIColor.clear
         
     }
-
-        
-        
     
-    // 날짜 자체를 바꾸기
-    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
-            
-        
-        switch dateFormatter.string(from: date) {
-            
-            case "2021-10-25":
-                return "D-day"
-            default:
-                return nil
-            }
-        }
+    }
+//    // 날짜 자체를 바꾸기
+//    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+//
+//
+//        switch dateFormatter.string(from: date) {
+//
+//            case "2021-10-25":
+//                return "D-day"
+//            default:
+//                return nil
+//            }
+//        }
+//
+//
+    
 //    // 날짜로 색 바꾸기
 //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
 //          //  print("\(dateFormatter.string(from: date)) 이거는 카렌더 ")
@@ -316,11 +409,23 @@ extension CalendarViewController : CAL_calendarDBProtocol {
             return }
         
         
+        
+        
+        
        
             for i in 0...cal_count-1 {
             let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+                
+                fillDefaultColorsDictionary.updateValue(i, forKey: "\(calitem.r_uploadDay!)")
                 if calitem.r_uploadDay! ==  dateFormatter.string(from: Date()) {
                 
+                    lbl_fat.isHidden = false
+                    lbl_muscle.isHidden = false
+                    textView_write.isHidden = false
+                    lbl_weight.isHidden = false
+                    self.btn_recoard.isHidden = true
+                    
+                    
                     lbl_muscle.text? = "골격근 : \(calitem.e_muscle!)"
                     lbl_fat.text? = "체지방 : \(calitem.e_fat!)"
                     lbl_weight.text? = "몸무게 : \(calitem.e_weight!)"
@@ -357,6 +462,9 @@ extension CalendarViewController : CAL_calendarDBProtocol {
                     
                 } //for
   
+        
+        Calender.reloadData()
+        
     } //calitemDownloaded
     
    
