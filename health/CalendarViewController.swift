@@ -12,10 +12,20 @@ class CalendarViewController: UIViewController {
 
    
     @IBOutlet weak var lbl_weight: UILabel!
+    @IBOutlet weak var lbl_muscle: UILabel!
+    @IBOutlet weak var lbl_fat: UILabel!
+    @IBOutlet weak var textView_write: UITextView!
+    @IBOutlet weak var img_claendar: UIImageView!
+    @IBOutlet weak var btn_recoard: UIButton!
     
     @IBOutlet weak var Calender: FSCalendar!
     
     let dateFormatter = DateFormatter()
+    var cal_count : Int!
+    
+    var callistItem: NSMutableArray = NSMutableArray()// DB에서 값 받아오는 곳
+    
+    var cal_date: [String] = []
     
 ///    var calendar_w: FSCalendar()
     
@@ -47,10 +57,26 @@ class CalendarViewController: UIViewController {
         Calender.dataSource = self
         
         
-        
-        
+        // 운동기록 가져오기
+        let calendar_listDB = CAL_calendarDB()
+        calendar_listDB.delegate = self
+        calendar_listDB.CAL_calendarDBistdownItems(user_u_no: Share.user_no)
+        print("동현 cal")
         
     } //viewDidLoad
+    
+    override func viewWillAppear(_ animated: Bool){
+        
+        // 운동기록 가져오기
+        let calendar_listDB = CAL_calendarDB()
+        calendar_listDB.delegate = self
+        calendar_listDB.CAL_calendarDBistdownItems(user_u_no: Share.user_no)
+    
+      //  let item: DBModel = GrouplistItem[indexPath.row] as! DBModel // 그룹 제목, 종료날짜 가져오기
+        btn_recoard.isHidden = true
+        
+        
+    }
 
     
     @IBAction func btn_img_upload(_ sender: UIButton) {
@@ -138,26 +164,87 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(dateFormatter.string(from: date) + " 선택됨")
         
+        guard cal_count != 0 else {
+            print("g_list_cout 카운트가 0이야")
+            return
+        }
+        
+        for i in 0...cal_count-1 {
+        let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+            if calitem.r_uploadDay! ==  dateFormatter.string(from: date) {
+                self.btn_recoard.isHidden = true
+                lbl_fat.isHidden = false
+                lbl_muscle.isHidden = false
+                textView_write.isHidden = false
+                lbl_weight.isHidden = false
+                
+           
+                
+                lbl_muscle.text? = "골격근 : \(calitem.e_muscle!)"
+                lbl_fat.text? = "체지방 : \(calitem.e_fat!)"
+                lbl_weight.text? = "몸무게 : \(calitem.e_weight!)"
+                textView_write.text? = "\(calitem.e_write!)" //img_claendar
+                
+                
+                DispatchQueue.global().async {
+                    guard let url = URL(string: "\(Share.imgurl)\(calitem.e_img!)") else { return }
+                    print("\(url)")
+
+                    guard let data = try? Data(contentsOf: url) else {
+                        return
+                    } //DispatchQueue
+
+                    DispatchQueue.main.async {
+                        self.img_claendar.image = UIImage(data: data)
+                    } //DispatchQueue
+                    
+                  
+                }
+                
+               
+                
+            }
+        } // for
+        
     }
+    
+    
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(dateFormatter.string(from: date) + " 해제됨")
+        
+        lbl_muscle.text? = ""
+        lbl_fat.text? = ""
+        lbl_weight.text? = ""
+        textView_write.text? = ""
+
+        lbl_fat.isHidden = true
+        lbl_muscle.isHidden = true
+        textView_write.isHidden = true
+        lbl_weight.isHidden = true
+
+        self.img_claendar.image = nil
+        self.btn_recoard.isHidden = false
+
     }
     
     // 날짜 밑에 넣기
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
             
+   
             switch dateFormatter.string(from: date) {
 
-
             case dateFormatter.string(from: Date()):
+            
+                
                 return "오늘"
+                
             case "2021-10-22":
           
                 return "출근"
-            case "2021-10-23":
+            case "2021-11-23":
                 return "지각"
-            case "2021-10-24":
+            case "2021-11-24":
                 return "결근"
             default:
                 return nil
@@ -171,27 +258,30 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     
     // 날짜 자체를 바꾸기
     func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
-            switch dateFormatter.string(from: date) {
+            
+        
+        switch dateFormatter.string(from: date) {
+            
             case "2021-10-25":
                 return "D-day"
             default:
                 return nil
             }
         }
-    // 날짜로 색 바꾸기
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
-            
-            switch dateFormatter.string(from: date) {
-            case "2021-10-22":
-                return .green
-            case "2021-10-23":
-                return .yellow
-            case "2021-10-24":
-                return .red
-            default:
-                return appearance.selectionColor
-            }
-        }
+//    // 날짜로 색 바꾸기
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+//          //  print("\(dateFormatter.string(from: date)) 이거는 카렌더 ")
+//            switch dateFormatter.string(from: date) {
+//            case "2021-10-22":
+//                return .green
+//            case "2021-10-23":
+//                return .yellow
+//            case "2021-10-24":
+//                return .red
+//            default:
+//                return appearance.selectionColor
+//            }
+//        }
 
     // 최대 세개까지만 가능
 //    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
@@ -210,3 +300,64 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
 //        }
     
 } // 카렌더 익스텐션
+
+
+//GM_follow_o
+
+
+extension CalendarViewController : CAL_calendarDBProtocol {
+    func calitemDownloaded(items: NSMutableArray, g_list_cout: Int) {
+        
+        callistItem = items
+        cal_count = g_list_cout
+        
+        guard cal_count != 0 else {
+            print("g_list_cout 카운트가 0이야")
+            return }
+        
+        
+       
+            for i in 0...cal_count-1 {
+            let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+                if calitem.r_uploadDay! ==  dateFormatter.string(from: Date()) {
+                
+                    lbl_muscle.text? = "골격근 : \(calitem.e_muscle!)"
+                    lbl_fat.text? = "체지방 : \(calitem.e_fat!)"
+                    lbl_weight.text? = "몸무게 : \(calitem.e_weight!)"
+                    textView_write.text? = "\(calitem.e_write!)" //img_claendar
+                    
+                    
+                    DispatchQueue.global().async {
+                        guard let url = URL(string: "\(Share.imgurl)\(calitem.e_img!)") else { return }
+                        print("\(url)")
+
+                        guard let data = try? Data(contentsOf: url) else {
+                            return
+                        } //DispatchQueue
+
+                        DispatchQueue.main.async {
+                            self.img_claendar.image = UIImage(data: data)
+                        } //DispatchQueue
+                        
+                      
+                    } //DispatchQueue
+                    
+    
+                } else {
+                    
+                    lbl_fat.isHidden = true
+                    lbl_muscle.isHidden = true
+                    textView_write.isHidden = true
+                    lbl_weight.isHidden = true
+
+                    self.img_claendar.image = nil
+                    self.btn_recoard.isHidden = false
+                    
+                } //if
+                    
+                } //for
+  
+    } //calitemDownloaded
+    
+   
+} //extension

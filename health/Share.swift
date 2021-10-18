@@ -9,7 +9,7 @@ import Foundation
 
 struct Share {
     
-    static var urlIP: String = "http://192.168.9.107:8080/helath/"
+    static var urlIP: String = "http://192.168.0.59:8080/helath/"
     static var user_no: Int = 2
     static var imgurl: String = "\(Share.urlIP)images/"
    

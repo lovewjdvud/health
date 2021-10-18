@@ -692,10 +692,16 @@
                                                     <action selector="btn_group_make:" destination="FPN-vD-q3y" eventType="touchUpInside" id="cGo-8z-LVr"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP4-8k-ehN">
-                                                <rect key="frame" x="20" y="721" width="374" height="126"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP4-8k-ehN">
+                                                <rect key="frame" x="20" y="336" width="374" height="96"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="기록허기"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <state key="normal" title=" 오늘 운동 기록하러 가기!" image="arrowshape.turn.up.right" catalog="system">
+                                                    <color key="titleColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                                    </preferredSymbolConfiguration>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -751,7 +757,12 @@
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="Calender" destination="BmS-zX-aVr" id="JlL-da-ohp"/>
+                        <outlet property="btn_recoard" destination="TP4-8k-ehN" id="yVj-Fv-qiz"/>
+                        <outlet property="img_claendar" destination="7TG-od-2Hu" id="bHD-WY-bji"/>
+                        <outlet property="lbl_fat" destination="ijD-LV-PCw" id="JDf-FG-Tte"/>
+                        <outlet property="lbl_muscle" destination="148-U5-TPr" id="rMx-gX-rA0"/>
                         <outlet property="lbl_weight" destination="dd9-kf-drX" id="VeG-0X-iYx"/>
+                        <outlet property="textView_write" destination="nG0-x3-SMY" id="sPX-AY-ENn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbl-uS-okA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1019,6 +1030,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="heart" catalog="system" width="128" height="109"/>

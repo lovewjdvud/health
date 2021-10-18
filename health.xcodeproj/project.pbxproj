@@ -36,6 +36,7 @@
 		69A843FE26E78D8A0096B6F0 /* B_GFollowlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A843FD26E78D8A0096B6F0 /* B_GFollowlist.swift */; };
 		69CF90B626FDCA9D00CCC574 /* GM_follow_o.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */; };
 		69CF90B826FDCAA800CCC574 /* GM_follow_t.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */; };
+		69D03E10271D18A200E433B0 /* CAL_calendarDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */; };
 		69E2A3C62704A6F500F22C98 /* GM_make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2A3C52704A6F500F22C98 /* GM_make.swift */; };
 		69FA8ED826EB29A000DA7DBA /* EditDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FA8ED726EB29A000DA7DBA /* EditDelegate.swift */; };
 		69FA8EDE26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */; };
@@ -77,6 +78,7 @@
 		69A843FD26E78D8A0096B6F0 /* B_GFollowlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_GFollowlist.swift; sourceTree = "<group>"; };
 		69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_follow_o.swift; sourceTree = "<group>"; };
 		69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_follow_t.swift; sourceTree = "<group>"; };
+		69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAL_calendarDB.swift; sourceTree = "<group>"; };
 		69E2A3C52704A6F500F22C98 /* GM_make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_make.swift; sourceTree = "<group>"; };
 		69FA8ED726EB29A000DA7DBA /* EditDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDelegate.swift; sourceTree = "<group>"; };
 		69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teammembers_AddViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */,
 				69E2A3C52704A6F500F22C98 /* GM_make.swift */,
 				692E74172719BC3900222AAB /* GM_Upload.swift */,
+				69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */,
 				694949CF27101D5000C41C59 /* Detailsub_DB.swift */,
 				6922CBF1270C02E700BC5060 /* Detail_DB.swift */,
 				6923AC8026E09F0200287B22 /* DBModel.swift */,
@@ -319,6 +322,7 @@
 				6923AC7F26E09EF300287B22 /* GrouplistDB.swift in Sources */,
 				69FB39CB2716C02D000339EC /* CalendarViewController.swift in Sources */,
 				69082713270ADF9500799E67 /* C_DailyTableViewCell.swift in Sources */,
+				69D03E10271D18A200E433B0 /* CAL_calendarDB.swift in Sources */,
 				692E1B8826E5FA5F00EAA9F2 /* GM_FollowlistDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

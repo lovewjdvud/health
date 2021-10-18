@@ -42,6 +42,17 @@ class DBModel: NSObject{
     var detailsub_u_id: String?
     var detailsub_u_nanme: String?
     
+    
+    // 운동기록 가져오기
+    var e_no: Int?
+    var e_write: String?
+    var e_muscle: Int?
+    var e_fat: Int?
+    var e_weight: Int?
+    var e_img: String?
+    var r_uploadDay: String?
+    
+    
     override init() {
         
         
@@ -49,7 +60,18 @@ class DBModel: NSObject{
        
     }
     
-    
+    // 디테일 서브detailsub_u_nanme
+    init(e_no: Int, e_write: String, e_muscle: Int, e_fat: Int, e_weight: Int, e_img: String, r_uploadDay: String) {
+
+        self.e_no = e_no
+        self.e_write = e_write
+        self.e_muscle = e_muscle
+        self.e_fat = e_fat
+        self.e_weight = e_weight
+        self.e_img = e_img
+        self.r_uploadDay = r_uploadDay
+        
+ }
     
     // Detail 불러오는 값
     init(d_u_id: String, up_no: Int, up_contains: String, up_img:String ,up_like_count: Int, up_c_count: Int, p_uploadday: String, d_u_img: String, d_u_name: String, d_u_no: Int) {
