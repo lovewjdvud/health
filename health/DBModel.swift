@@ -53,12 +53,26 @@ class DBModel: NSObject{
     var r_uploadDay: String?
     
     
+    // 운동 사진 비교
+   
+    var  com_e_img: String?
+    var  com_e_uploadDay: String?
+    
     override init() {
         
         
        
        
     }
+    
+    // 운동 사진 비교
+    init(com_e_img: String, com_e_uploadDay: String) {
+
+        self.com_e_img = com_e_img
+        self.com_e_uploadDay = com_e_uploadDay
+        
+ }
+    
     
     // 디테일 서브detailsub_u_nanme
     init(e_no: Int, e_write: String, e_muscle: Int, e_fat: Int, e_weight: Int, e_img: String, r_uploadDay: String) {

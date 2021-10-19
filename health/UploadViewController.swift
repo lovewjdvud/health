@@ -25,8 +25,11 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     var textView_write = ""
     
     var filename_img = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+  
         photo() // 갤러리 불러오기
         
         btn_upload2.layer.cornerRadius = 30 // 버튼 모서리 깍기

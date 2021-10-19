@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import MaterialComponents.MaterialBottomSheet
 
 class CalendarViewController: UIViewController {
 
@@ -17,19 +18,22 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var textView_write: UITextView!
     @IBOutlet weak var img_claendar: UIImageView!
     @IBOutlet weak var btn_recoard: UIButton!
+    @IBOutlet weak var btn_bottomsheet: UIButton!
     
+
     @IBOutlet weak var Calender: FSCalendar!
     
     let dateFormatter = DateFormatter()
     var cal_count : Int!
-    
+    var seletday_cal: String!
     var callistItem: NSMutableArray = NSMutableArray()// DB에서 값 받아오는 곳
     
     var cal_date: [String] = []
     var currentdate_cal: String!
 ///    var calendar_w: FSCalendar()
     
-    
+    var limit_current: String!
+    var dates_2: Date!
     
     var dates: [Date] = []
     var events: [Date] = []
@@ -57,7 +61,7 @@ class CalendarViewController: UIViewController {
         calendar_listDB.delegate = self
         calendar_listDB.CAL_calendarDBistdownItems(user_u_no: Share.user_no)
         print("동현 cal")
-        
+        btn_bottomsheet.layer.cornerRadius = 30 // 버튼 모서리 깍기
     } //viewDidLoad
     
     override func viewWillAppear(_ animated: Bool){
@@ -79,14 +83,48 @@ class CalendarViewController: UIViewController {
         let dateFormatter_cal = DateFormatter()
         dateFormatter_cal.dateFormat = "yyyy-MM-dd"
         dateFormatter_cal.timeZone = TimeZone.current
+       
          currentdate_cal = (dateFormatter_cal.string(from: date))
         
+      //  dates_2 = dateFormatter_cal.date(from: <#T##String#>)
+        
+        cal_date.removeAll()
+      
     }
 
-    
-    @IBAction func btn_img_upload(_ sender: UIButton) {
-   
+ 
+    @IBAction func btn_comparison(_ sender: UIButton) {
+        
+        // 바텀 시트로 쓰일 뷰컨트롤러 생성
+               let vc = storyboard?.instantiateViewController(withIdentifier: "Cal_BottomViewController") as! Cal_BottomViewController
+               
+        
+        if seletday_cal == nil {
+            seletday_cal = currentdate_cal
+        }
+        
+        
+                vc.select_date_FSCalendar =  seletday_cal!
+                vc.cal_date_array = cal_date
+               // MDC 바텀 시트로 설정
+               let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: vc)
+               
+        
+        // 높이
+               bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 200
+        
+        
+        // 뒤에 배경 컬러
+                bottomSheet.scrimColor = UIColor(#colorLiteral(red: 0.2874339819, green: 0.5118607879, blue: 1, alpha: 1)).withAlphaComponent(0.5)
+               
+        // 보여주기
+               present(bottomSheet, animated: true, completion: nil)
+        
+        
+        
     }
+    
+    
     
     func CalendarReplace()  {
 //         //달력의 평일 날짜 색깔
@@ -147,6 +185,68 @@ class CalendarViewController: UIViewController {
 
        
     }
+    
+    // 날짜 계산
+    func Date_Calculate(select : String)  {
+       
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone.current
+        limit_current = "\(dateFormatter.string(from: date))"
+       
+        print(dateFormatter.string(from: date))
+       
+
+        let select_date = dateFormatter.date(from:"\(select)")!
+        
+        let startDate = dateFormatter.date(from:"\(limit_current!)")!// 이친구가 앞
+        
+        
+        if startDate < select_date {
+            
+    
+            lbl_muscle.text? = ""
+            lbl_fat.text? = ""
+            lbl_weight.text? = ""
+            textView_write.text? = ""
+    
+            lbl_fat.isHidden = true
+            lbl_muscle.isHidden = true
+            textView_write.isHidden = true
+            lbl_weight.isHidden = true
+            btn_bottomsheet.isHidden = true
+    
+            self.img_claendar.image = nil
+            self.btn_recoard.isHidden = true
+            
+    
+        }
+        
+   
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        if segue.identifier == "Cel_recoard" {
+          
+          let detailView  = segue.destination as! Cal_recoardViewController
+          
+            detailView.selectday_recoed2 = seletday_cal
+        
+         
+        } 
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+
+         self.view.endEditing(true)
+
+   }
 } //CalendarViewController
 
 
@@ -168,27 +268,31 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(dateFormatter.string(from: date) + " 선택됨")
+        seletday_cal = dateFormatter.string(from: date)
+        
         
         guard cal_count != 0 else {
             print("g_list_cout 카운트가 0이야")
             return
+            
+            
         }
         
         
-        
-        lbl_muscle.text? = ""
-        lbl_fat.text? = ""
-        lbl_weight.text? = ""
-        textView_write.text? = ""
-
-        lbl_fat.isHidden = true
-        lbl_muscle.isHidden = true
-        textView_write.isHidden = true
-        lbl_weight.isHidden = true
-
-        self.img_claendar.image = nil
-        self.btn_recoard.isHidden = false
-        
+//
+//        lbl_muscle.text? = ""
+//        lbl_fat.text? = ""
+//        lbl_weight.text? = ""
+//        textView_write.text? = ""
+//
+//        lbl_fat.isHidden = true
+//        lbl_muscle.isHidden = true
+//        textView_write.isHidden = true
+//        lbl_weight.isHidden = true
+//
+//        self.img_claendar.image = nil
+//        self.btn_recoard.isHidden = false
+//
         
         
         for i in 0...cal_count-1 {
@@ -199,7 +303,7 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
                 lbl_muscle.isHidden = false
                 textView_write.isHidden = false
                 lbl_weight.isHidden = false
-                
+                btn_bottomsheet.isHidden = false
            
                 
                 lbl_muscle.text? = "골격근 : \(calitem.e_muscle!)"
@@ -229,16 +333,17 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
             
         } // for
         
-        if currentdate_cal == dateFormatter.string(from: date){
+        
+        
+        if currentdate_cal == dateFormatter.string(from: date) {
         
             btn_recoard.text("오늘 운동 기록하러 가기!")
             
         }else {
             btn_recoard.text("운동기록을 깜빡하셨나요?")
         }
-        
-        
-        
+
+        Date_Calculate(select: seletday_cal)
     }
     
     
@@ -255,7 +360,7 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
         lbl_muscle.isHidden = true
         textView_write.isHidden = true
         lbl_weight.isHidden = true
-
+        btn_bottomsheet.isHidden = true
         self.img_claendar.image = nil
         self.btn_recoard.isHidden = false
 
@@ -410,19 +515,29 @@ extension CalendarViewController : CAL_calendarDBProtocol {
         
         
         
-        
+                      lbl_fat.isHidden = true
+                       lbl_muscle.isHidden = true
+                       textView_write.isHidden = true
+                       lbl_weight.isHidden = true
+                        btn_bottomsheet.isHidden = true
+                       self.img_claendar.image = nil
+                       self.btn_recoard.isHidden = false
         
        
             for i in 0...cal_count-1 {
             let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+             
+                cal_date.append("\(calitem.r_uploadDay!)")
+                
                 
                 fillDefaultColorsDictionary.updateValue(i, forKey: "\(calitem.r_uploadDay!)")
-                if calitem.r_uploadDay! ==  dateFormatter.string(from: Date()) {
+                if calitem.r_uploadDay! ==  currentdate_cal{
                 
                     lbl_fat.isHidden = false
                     lbl_muscle.isHidden = false
                     textView_write.isHidden = false
                     lbl_weight.isHidden = false
+                    btn_bottomsheet.isHidden = false
                     self.btn_recoard.isHidden = true
                     
                     
@@ -447,18 +562,12 @@ extension CalendarViewController : CAL_calendarDBProtocol {
                       
                     } //DispatchQueue
                     
-    
-                } else {
-                    
-                    lbl_fat.isHidden = true
-                    lbl_muscle.isHidden = true
-                    textView_write.isHidden = true
-                    lbl_weight.isHidden = true
-
-                    self.img_claendar.image = nil
-                    self.btn_recoard.isHidden = false
-                    
-                } //if
+                }
+//                } else if calitem.r_uploadDay! !=  currentdate_cal{
+//
+//
+//
+//                } //if
                     
                 } //for
   

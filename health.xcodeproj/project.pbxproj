@@ -37,7 +37,11 @@
 		69CF90B626FDCA9D00CCC574 /* GM_follow_o.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */; };
 		69CF90B826FDCAA800CCC574 /* GM_follow_t.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */; };
 		69D03E10271D18A200E433B0 /* CAL_calendarDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */; };
+		69D03E14271D8B2000E433B0 /* Cal_recoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D03E13271D8B2000E433B0 /* Cal_recoardViewController.swift */; };
+		69D03E16271DD27600E433B0 /* Cal_BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D03E15271DD27600E433B0 /* Cal_BottomViewController.swift */; };
+		69D03E18271DDF0900E433B0 /* CAL_ ComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D03E17271DDF0900E433B0 /* CAL_ ComparisonViewController.swift */; };
 		69E2A3C62704A6F500F22C98 /* GM_make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2A3C52704A6F500F22C98 /* GM_make.swift */; };
+		69F7AB49271E93550036CB84 /* CAL_compar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F7AB48271E93550036CB84 /* CAL_compar.swift */; };
 		69FA8ED826EB29A000DA7DBA /* EditDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FA8ED726EB29A000DA7DBA /* EditDelegate.swift */; };
 		69FA8EDE26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */; };
 		69FB39CB2716C02D000339EC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FB39CA2716C02D000339EC /* CalendarViewController.swift */; };
@@ -79,7 +83,11 @@
 		69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_follow_o.swift; sourceTree = "<group>"; };
 		69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_follow_t.swift; sourceTree = "<group>"; };
 		69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAL_calendarDB.swift; sourceTree = "<group>"; };
+		69D03E13271D8B2000E433B0 /* Cal_recoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_recoardViewController.swift; sourceTree = "<group>"; };
+		69D03E15271DD27600E433B0 /* Cal_BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_BottomViewController.swift; sourceTree = "<group>"; };
+		69D03E17271DDF0900E433B0 /* CAL_ ComparisonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAL_ ComparisonViewController.swift"; sourceTree = "<group>"; };
 		69E2A3C52704A6F500F22C98 /* GM_make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GM_make.swift; sourceTree = "<group>"; };
+		69F7AB48271E93550036CB84 /* CAL_compar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAL_compar.swift; sourceTree = "<group>"; };
 		69FA8ED726EB29A000DA7DBA /* EditDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDelegate.swift; sourceTree = "<group>"; };
 		69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teammembers_AddViewController.swift; sourceTree = "<group>"; };
 		69FB39CA2716C02D000339EC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -130,10 +138,13 @@
 				69FB39CC2716E555000339EC /* MypageViewController.swift */,
 				6919C24826DCE6FA007693D4 /* ViewController.swift */,
 				69082710270ACDAA00799E67 /* Detail_ViewController.swift */,
+				69FB39CA2716C02D000339EC /* CalendarViewController.swift */,
+				69D03E13271D8B2000E433B0 /* Cal_recoardViewController.swift */,
+				69D03E15271DD27600E433B0 /* Cal_BottomViewController.swift */,
+				69D03E17271DDF0900E433B0 /* CAL_ ComparisonViewController.swift */,
 				694949D1271074F800C41C59 /* UploadViewController.swift */,
 				692869D0271ABE5100E9580A /* CommentViewController.swift */,
 				69468DA7271BE14D005FEBFB /* C_CommTableViewCell.swift */,
-				69FB39CA2716C02D000339EC /* CalendarViewController.swift */,
 				69FA8EDD26EB3DDF00DA7DBA /* Teammembers_AddViewController.swift */,
 				6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */,
 				694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */,
@@ -142,14 +153,15 @@
 				6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */,
 				6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */,
 				696A748C26DE2A77009051A7 /* Custom.swift */,
+				69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */,
 				6923AC7E26E09EF300287B22 /* GrouplistDB.swift */,
 				6923AC8426E0B68800287B22 /* Group_gno_DB.swift */,
 				692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */,
-				69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */,
 				69CF90B726FDCAA800CCC574 /* GM_follow_t.swift */,
 				69E2A3C52704A6F500F22C98 /* GM_make.swift */,
 				692E74172719BC3900222AAB /* GM_Upload.swift */,
 				69D03E0F271D18A200E433B0 /* CAL_calendarDB.swift */,
+				69F7AB48271E93550036CB84 /* CAL_compar.swift */,
 				694949CF27101D5000C41C59 /* Detailsub_DB.swift */,
 				6922CBF1270C02E700BC5060 /* Detail_DB.swift */,
 				6923AC8026E09F0200287B22 /* DBModel.swift */,
@@ -315,14 +327,18 @@
 				69E2A3C62704A6F500F22C98 /* GM_make.swift in Sources */,
 				692869D1271ABE5100E9580A /* CommentViewController.swift in Sources */,
 				6923AC8126E09F0200287B22 /* DBModel.swift in Sources */,
+				69D03E14271D8B2000E433B0 /* Cal_recoardViewController.swift in Sources */,
 				694152F2270EDCC6005A25B4 /* btn_like.swift in Sources */,
 				69CF90B826FDCAA800CCC574 /* GM_follow_t.swift in Sources */,
 				69082711270ACDAA00799E67 /* Detail_ViewController.swift in Sources */,
 				69FB39CD2716E555000339EC /* MypageViewController.swift in Sources */,
+				69F7AB49271E93550036CB84 /* CAL_compar.swift in Sources */,
+				69D03E18271DDF0900E433B0 /* CAL_ ComparisonViewController.swift in Sources */,
 				6923AC7F26E09EF300287B22 /* GrouplistDB.swift in Sources */,
 				69FB39CB2716C02D000339EC /* CalendarViewController.swift in Sources */,
 				69082713270ADF9500799E67 /* C_DailyTableViewCell.swift in Sources */,
 				69D03E10271D18A200E433B0 /* CAL_calendarDB.swift in Sources */,
+				69D03E16271DD27600E433B0 /* Cal_BottomViewController.swift in Sources */,
 				692E1B8826E5FA5F00EAA9F2 /* GM_FollowlistDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
