@@ -380,7 +380,7 @@ extension Teammembers_AddViewController: UITableViewDelegate, UITableViewDataSou
         cell.lbl_nameprofile.text? = "\(item.u_name!)"
         cell.selectionStyle = .none
         index_num = indexPath.row
-        //      print("여기는 테이블  \(following_check_member["\(item.u_id ?? "ㅇㅇ")"]!) = \(item.u_id!)")
+
         
         cell.index = indexPath.row
         cell.invite_id = "\(item.u_id!)"
@@ -542,35 +542,6 @@ extension Teammembers_AddViewController : GM_FollowlistDBProtocol {
         FollowlistItem = items as! NSMutableArray
 
         self.g_tv_followlist.reloadData()
-//        followNum_o = g_list_cout - 1
-//
-        
-        
-//
-//        //  초기 값에 팔로우 false 값 넣어 주기
-//        if following_check_member.count == 0 && sm_follow.selectedSegmentIndex == 0 {
-//
-//        for i in 0...followNum_o {
-//            print("\(followNum) 값이")
-//
-//            let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
-//            following_check_member.updateValue(false, forKey: item.u_id!)
-//            print("\(check_member) 값이 돌아??")
-//        }
-//
-//        } else if follower_check_member.count == 0 && sm_follow.selectedSegmentIndex == 1{
-//
-//
-//            for i in 0...followNum_o {
-//                print("\(followNum) 값이")
-//                let item: DBModel = FollowlistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
-//
-//                follower_check_member.updateValue(false, forKey: item.u_id!)
-//                print("\(follower_check_member) 팔로워값이 돌아??")
-//            }
-//        } // if
-//
-//
         
     }
 }

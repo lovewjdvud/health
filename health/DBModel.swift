@@ -58,12 +58,53 @@ class DBModel: NSObject{
     var  com_e_img: String?
     var  com_e_uploadDay: String?
     
+    // 프로필 정보
+    
+    var  my_u_id: String?
+    var  my_u_name: String?
+    var  my_u_introduce: String?
+    var  my_u_img: String?
+    
+    // 마이페이지 팔로잉 팔로우
+    
+    var  following_coun: String?
+    var  followoer_count: String?
+    
     override init() {
         
         
        
        
     }
+    // 팔로잉 데리고오기
+    init(following_coun:String) {
+
+        self.following_coun = following_coun
+       
+      
+ }
+    
+    // 팔로워 데리고오기
+    init(followoer_count:String) {
+
+        self.followoer_count = followoer_count
+       
+      
+ }
+    
+    
+    
+    // 프로피
+    init(my_u_id: String, my_u_name: String, my_u_introduce: String, my_u_img: String) {
+
+        self.my_u_id = my_u_id
+        self.my_u_name = my_u_name
+        self.my_u_introduce = my_u_introduce
+        self.my_u_img = my_u_img
+        
+ }
+    
+    
     
     // 운동 사진 비교
     init(com_e_img: String, com_e_uploadDay: String) {

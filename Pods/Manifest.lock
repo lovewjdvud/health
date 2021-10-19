@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.4.3)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - FSCalendar (2.8.2)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/BottomSheet (124.2.0):
@@ -38,6 +41,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - Charts
   - FSCalendar
   - MaterialComponents/BottomSheet
   - YPImagePicker
@@ -45,6 +49,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - FSCalendar
     - MaterialComponents
     - PryntTrimmerView
@@ -53,12 +58,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: e5956e79df0af5477fb0407a5dd378f025a7ced9
+PODFILE CHECKSUM: 468d17d8d34cf7772ad66fb61ef97f67e286e06d
 
 COCOAPODS: 1.10.2

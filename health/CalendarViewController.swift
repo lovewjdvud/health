@@ -67,6 +67,8 @@ class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool){
         
         
+        self.title = "Calender"
+         
         // 마크 컬러
         Calender.appearance.eventDefaultColor = UIColor.green
                 
@@ -86,7 +88,7 @@ class CalendarViewController: UIViewController {
        
          currentdate_cal = (dateFormatter_cal.string(from: date))
         
-      //  dates_2 = dateFormatter_cal.date(from: <#T##String#>)
+
         
         cal_date.removeAll()
       

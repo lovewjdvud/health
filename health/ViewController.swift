@@ -46,8 +46,6 @@ class ViewController: UIViewController {
     // 다른 화면 갔다가 왔을때 해주고 싶은 처리
     override func viewWillAppear(_ animated: Bool){
         
-      
-         
         test_num += 1
         // 팔로우 리스트들 삭제
         id_member.removeAll()

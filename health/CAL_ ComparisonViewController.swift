@@ -23,6 +23,7 @@ class CAL__ComparisonViewController: UIViewController {
     @IBOutlet weak var img_small: UIImageView!
     
     @IBOutlet weak var lbl_small: UILabel!
+    @IBOutlet weak var lbl_title: UILabel!
     @IBOutlet weak var lbl_big: UILabel!
     
     
@@ -54,6 +55,8 @@ class CAL__ComparisonViewController: UIViewController {
         
         com_db_date.removeAll()
         com_db_img.removeAll()
+        
+        title_lbl()
     } //viewWillAppear
     
     
@@ -194,6 +197,27 @@ class CAL__ComparisonViewController: UIViewController {
         
     } // img
     
+    func title_lbl()  {
+       
+         guard let text = self.lbl_title.text else { return }
+       
+        let attributeString = NSMutableAttributedString(string: text)
+     
+        let font = UIFont.systemFont(ofSize: 40)
+
+        attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: "harder?"))
+        
+        attributeString.addAttribute(.foregroundColor, value: UIColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1)), range: (text as NSString).range(of: "harder?"))
+
+     
+    
+        self.lbl_title.attributedText = attributeString
+
+       
+
+
+       
+    }
     
 } //CAL__ComparisonViewController
 

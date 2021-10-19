@@ -8,6 +8,9 @@ target 'health' do
   pod 'YPImagePicker'
   pod 'FSCalendar'
 	
+  # 차트
+  pod 'Charts'
+
   # 바텀시트
   pod 'MaterialComponents/BottomSheet'
   
@@ -15,6 +18,7 @@ target 'health' do
   pod 'Alamofire', '~> 5.2'
 
   use_frameworks!
+
 
   # Pods for health
 
