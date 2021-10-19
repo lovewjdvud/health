@@ -29,6 +29,9 @@ class C_MyFollowTableViewCell: UITableViewCell {
            
    //        middleButton.clipsToBounds = true
         img_my_follow.layer.cornerRadius = img_my_follow.frame.size.width / 2
+        
+        btn_follow_myCell.layer.cornerRadius = 10 // 버튼 모서리 깍기
+      
     }
 
     
@@ -39,5 +42,19 @@ class C_MyFollowTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    
+    
+    @IBAction func btn_follow_select(_ sender: UIButton) {
+        
+        
+        
+        
+        
+        
+        
+    }
+    
 
 }

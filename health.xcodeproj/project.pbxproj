@@ -17,6 +17,7 @@
 		6919C24E26DCE6FB007693D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6919C24D26DCE6FB007693D4 /* Assets.xcassets */; };
 		6919C25126DCE6FB007693D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6919C24F26DCE6FB007693D4 /* LaunchScreen.storyboard */; };
 		6920CB9626DFD02700B6EA1C /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */; };
+		69224D61271F336B00E0FBDB /* MyMonth_count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69224D60271F336B00E0FBDB /* MyMonth_count.swift */; };
 		6922CBF2270C02E700BC5060 /* Detail_DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6922CBF1270C02E700BC5060 /* Detail_DB.swift */; };
 		6923AC7D26E0979C00287B22 /* C_AddGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */; };
 		6923AC7F26E09EF300287B22 /* GrouplistDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923AC7E26E09EF300287B22 /* GrouplistDB.swift */; };
@@ -69,6 +70,7 @@
 		6919C25026DCE6FB007693D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6919C25226DCE6FB007693D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6920CB9526DFD02700B6EA1C /* AddGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
+		69224D60271F336B00E0FBDB /* MyMonth_count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMonth_count.swift; sourceTree = "<group>"; };
 		6922CBF1270C02E700BC5060 /* Detail_DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_DB.swift; sourceTree = "<group>"; };
 		6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_AddGroupTableViewCell.swift; sourceTree = "<group>"; };
 		6923AC7E26E09EF300287B22 /* GrouplistDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrouplistDB.swift; sourceTree = "<group>"; };
@@ -185,8 +187,9 @@
 				69F7AB4E271EE8720036CB84 /* Mypagelist.swift */,
 				69F7AB50271EFA5A0036CB84 /* My_followingCount.swift */,
 				69F7AB52271F04430036CB84 /* My_followoerCount.swift */,
-				6923AC8026E09F0200287B22 /* DBModel.swift */,
 				69F7AB54271F11970036CB84 /* btn_myFollow.swift */,
+				69224D60271F336B00E0FBDB /* MyMonth_count.swift */,
+				6923AC8026E09F0200287B22 /* DBModel.swift */,
 			);
 			path = health;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6923AC8326E0AB0600287B22 /* Share.swift in Sources */,
+				69224D61271F336B00E0FBDB /* MyMonth_count.swift in Sources */,
 				694949D2271074F800C41C59 /* UploadViewController.swift in Sources */,
 				696A748D26DE2A77009051A7 /* Custom.swift in Sources */,
 				69CF90B626FDCA9D00CCC574 /* GM_follow_o.swift in Sources */,

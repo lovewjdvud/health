@@ -90,6 +90,14 @@ class CalendarViewController: UIViewController {
         
 
         
+        lbl_fat.isHidden = true
+         lbl_muscle.isHidden = true
+         textView_write.isHidden = true
+         lbl_weight.isHidden = true
+          btn_bottomsheet.isHidden = true
+         self.img_claendar.image = nil
+         self.btn_recoard.isHidden = false
+        
         cal_date.removeAll()
       
     }
@@ -275,30 +283,25 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
         
         guard cal_count != 0 else {
             print("g_list_cout 카운트가 0이야")
+            if currentdate_cal == dateFormatter.string(from: date) {
+            
+                btn_recoard.text("오늘 운동 기록하러 가기!")
+                
+            }else {
+                btn_recoard.text("운동기록을 깜빡하셨나요?")
+            }
+
+            Date_Calculate(select: seletday_cal)
+            
             return
             
             
         }
         
-        
-//
-//        lbl_muscle.text? = ""
-//        lbl_fat.text? = ""
-//        lbl_weight.text? = ""
-//        textView_write.text? = ""
-//
-//        lbl_fat.isHidden = true
-//        lbl_muscle.isHidden = true
-//        textView_write.isHidden = true
-//        lbl_weight.isHidden = true
-//
-//        self.img_claendar.image = nil
-//        self.btn_recoard.isHidden = false
-//
-        
-        
         for i in 0...cal_count-1 {
         let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
+            
+            
             if calitem.r_uploadDay! ==  dateFormatter.string(from: date) {
                 self.btn_recoard.isHidden = true
                 lbl_fat.isHidden = false
@@ -511,12 +514,12 @@ extension CalendarViewController : CAL_calendarDBProtocol {
         callistItem = items
         cal_count = g_list_cout
         
+        
+        
+        
         guard cal_count != 0 else {
             print("g_list_cout 카운트가 0이야")
-            return }
-        
-        
-        
+          
                       lbl_fat.isHidden = true
                        lbl_muscle.isHidden = true
                        textView_write.isHidden = true
@@ -525,7 +528,9 @@ extension CalendarViewController : CAL_calendarDBProtocol {
                        self.img_claendar.image = nil
                        self.btn_recoard.isHidden = false
         
-       
+            return }
+        
+        
             for i in 0...cal_count-1 {
             let calitem: DBModel = callistItem[i] as! DBModel // 그룹 제목, 종료날짜 가져오기
              
@@ -572,6 +577,9 @@ extension CalendarViewController : CAL_calendarDBProtocol {
 //                } //if
                     
                 } //for
+        
+        
+        
   
         
         Calender.reloadData()

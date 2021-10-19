@@ -70,12 +70,30 @@ class DBModel: NSObject{
     var  following_coun: String?
     var  followoer_count: String?
     
+    // 달마다 카운트
+    var  month: Int?
+    var  month_count: Int?
+    
     override init() {
         
         
        
        
     }
+    
+    
+    // 달마다 카운트
+    // 팔로잉 데리고오기
+    init(month:Int, month_count: Int) {
+
+       
+        self.month = month
+        self.month_count = month_count
+       
+      
+ }
+    
+    
     // 팔로잉 데리고오기
     init(following_coun:String) {
 

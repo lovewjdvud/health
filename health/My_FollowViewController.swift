@@ -68,7 +68,8 @@ class My_FollowViewController: UIViewController, UISearchBarDelegate, UISearchCo
                 
             sm_num = 0
             sm_funtio()
-            //self.g_tv_followlist.reloadData()
+            
+            self.tableView.reloadData()
             
         }else if sender.selectedSegmentIndex == 1{
 //            UIView.animate(withDuration: 0.2) { [self] in
@@ -80,7 +81,7 @@ class My_FollowViewController: UIViewController, UISearchBarDelegate, UISearchCo
             
             sm_funtio()
             
-            //self.g_tv_followlist.reloadData()
+            self.tableView.reloadData()
     }
         
     }
@@ -111,65 +112,7 @@ class My_FollowViewController: UIViewController, UISearchBarDelegate, UISearchCo
     
 
     
-    
-    //                         스와이프로 세그 먼트 조절하기               //
-    
-    func makeSingleTouch() {
-        let swiperight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swiperight.direction = UISwipeGestureRecognizer.Direction.right
-        self.view.addGestureRecognizer(swiperight)
-        
-        let swipeleft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swipeleft.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(swipeleft)
-    
-    
-    }
-    
-    
-    
-    
-    
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-            // 만일 제스쳐가 있다면
-            if let swipeGesture = gesture as? UISwipeGestureRecognizer{
-                
-                // 발생한 이벤트가 각 방향의 스와이프 이벤트라면
-                // pageControl이 가르키는 현재 페이지에 해당하는 이미지를 imageView에 할당
-                switch swipeGesture.direction {
-                    case UISwipeGestureRecognizer.Direction.left :
-                        sGment_my.selectedSegmentIndex = 1
-                        sm_num = 1
-                        sm_funtio()
-                        
-                    case UISwipeGestureRecognizer.Direction.right :
-                       
-        
-                          if  sGment_my.selectedSegmentIndex == 0 {
-                            
-                        
-                            
-                            self.dismiss(animated: true, completion: nil) // 스와이프 뒤로가기
-                            
-                        }else if  sGment_my.selectedSegmentIndex == 1 {
-                            sGment_my.selectedSegmentIndex = 0
-                            sm_num = 0
-                            sm_funtio()
-                            
-                            
-                        }
-                        
-                       
-                    default:
-                      break
-                }
-
-            }
-
-        }
-    
-    //                         스와이프로 세그 먼트 조절하기 끝               //
-    
+   
     
     
     
@@ -247,4 +190,6 @@ extension My_FollowViewController : GM_FollowlistDBProtocol {
         self.tableView.reloadData()
         
     }
+    
+    
 }
