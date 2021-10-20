@@ -1,99 +1,104 @@
 //
-//  Cal_recoardViewController.swift
+//  MypageProfileViewController.swift
 //  health
 //
-//  Created by Songjeongpyeong on 2021/10/18.
+//  Created by Songjeongpyeong on 2021/10/20.
 //
 
 import UIKit
 import YPImagePicker
 import Alamofire
 
-class Cal_recoardViewController: UIViewController {
+class MypageProfileViewController: UIViewController {
 
     
-    @IBOutlet weak var img_Record: UIImageView!
+    @IBOutlet weak var tf_id_Profile: UITextField!
+    @IBOutlet weak var tf_name_Profile: UITextField!
+    @IBOutlet weak var tf_introduce_Profile: UITextField!
     
-
+    @IBOutlet weak var finishy_btn: UIButton!
+    @IBOutlet weak var img_Profile: UIImageView!
+    
+    var id = ""
+    var name = ""
+    var intruduce = ""
+    var img_name = ""
  
-    @IBOutlet weak var tf_muscle_recoard: UITextField!
-    @IBOutlet weak var tf_fat_recoard: UITextField!
-    
-    @IBOutlet weak var tf_weight_recoard: UITextField!
-    @IBOutlet weak var textView_recoard: UITextView!
-    
     var filename_img = ""
-    var textView_write = ""
-    
     var imageData: Data!
     
-    var currentdate_recoard: String!
-    var selectday_recoed: Date!
-    var selectday_recoed2: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setting()
+       
+        
+       
+        // 이미지 깍기
+        img_Profile.layer.cornerRadius = 13
+        img_Profile.clipsToBounds = true
+        
+//        middleButton.clipsToBounds = true
+        img_Profile.layer.cornerRadius = img_Profile.frame.size.width / 2
 
-
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone.current
-        currentdate_recoard = "\(dateFormatter.string(from: date))"
+        // 버튼 깍기
+        finishy_btn.layer.cornerRadius = 10 // 버튼 모서리 깍기
+       
+        //테두리 굵기
+        finishy_btn.layer.borderWidth = 2
+              //테두리 색상
+        finishy_btn.layer.borderColor = CGColor(#colorLiteral(red: 0.2874339819, green: 0.5118607879, blue: 1, alpha: 1))
         
-        
-        
+       
     } //viewDidLoad
-    
+  
 
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    func setting()  {
+        print("\(id) 아이디")
+        print("\(name) 이름")
+        print("\(intruduce) 소개")
+        print("\(img_name) 이름")
+        
+        tf_id_Profile.text! = id
+        tf_name_Profile.text! = name
+        tf_introduce_Profile.text! = intruduce
+     
+       
+        
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: "\(Share.imgurl)\(self.img_name)") else { return }
+            print("\(url)")
 
-         self.view.endEditing(true)
-
-   }
-    
-   // 사진 접근 버튼
-    @IBAction func btn_img(_ sender: UIButton) {
-        photo() // 갤러리 접근
+            guard let data = try? Data(contentsOf: url) else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.img_Profile.image = UIImage(data: data)
+            }
+            
         
     }
-    
-    
-    
-    @IBAction func btn_recoard_finish(_ sender: UIButton) {
-       
-        if img_Record.image == nil {
-         let Edict = UIAlertController(title: "경고", message: "사진을 선택헤주세요", preferredStyle: .alert)
-         let EdicCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-         Edict.addAction(EdicCancel)
-         present(Edict, animated: true, completion: nil)
+    }
 
          
-     } else {
-     //Action
-     let Edict = UIAlertController(title: "운동 클리어!", message: "기록 하시겠습니까?", preferredStyle: .alert)
-     
- 
-     let EdicCancel = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-     let Edictallow = UIAlertAction(title: "예", style: .default, handler:  { [self]ACTION in uploadstart()}) // 업로드 함수 넣기
-//       let lampOnAction = UIAlertAction(title: "아니요 켭니다", style: .default, handler: { [self]ACTION in nil})
-  
-   //  EdictCancel.setValue(UIColor(red: CGFloat(GL_RED), green: nil, blue: nil, alpha: nil), forKey: "title")
-           
-            // lampremove.addAction(lampOnAction)
-     Edict.addAction(Edictallow)
-     Edict.addAction(EdicCancel)
-   
-             present(Edict, animated: true, completion: nil)
-     
-     }
-     
-     
-     
+    
+    @IBAction func btn_img_change(_ sender: UIButton) {
         
+        
+        photo()
+    } //btn_img_change
+    
+   
+    @IBAction func finishy_btn(_ sender: UIButton) {
+        
+        print("ntn")
+        
+        uploadstart()
+    
     }
     
+       
     
     
     
@@ -115,7 +120,7 @@ class Cal_recoardViewController: UIViewController {
 //                print(photo.exifMeta) // Print exif meta data of original image.
                 
                 // 프사 이미지 넣기
-                self.img_Record.image = photo.image
+                self.img_Profile.image = photo.image
             }
           
             // 피커 창 닫기
@@ -134,32 +139,36 @@ class Cal_recoardViewController: UIViewController {
     // 사진 업로드 과정
     func uploadstart()  {
         
-        
+     
         let date = Date()
         let dateFormatter_cal = DateFormatter()
         dateFormatter_cal.dateFormat = "yyyy-MM-HH:mm"
         dateFormatter_cal.timeZone = TimeZone.current
        
-        let currentDate = (dateFormatter_cal.string(from: date))
+        let currentdate_cal = (dateFormatter_cal.string(from: date))
         
-        filename_img = "\(currentDate)\(Share.user_no).jpg"
+        filename_img = "\(currentdate_cal)\(Share.user_no).jpg"
+//
+//        var id_change = tf_id_Profile.text!
+//        var name_change = tf_name_Profile.text!
+//        var introduce_change = tf_introduce_Profile.text!
+//        var img_change = filename_img
         
-        textView_write = textView_recoard.text! // 텍스트뷰에 쓴글 가져오기
-        print("\(textView_write) 신찬식 텍스트")
+        
         print("\(filename_img) 신찬식 이미지")
-        guard  img_Record.image != nil else {  // 이미지 널값 구분
+        guard  img_Profile.image != nil else {  // 이미지 널값 구분
           print("실패")
             return
         }// 바이트 추출
-        imageData = self.img_Record.image?.jpegData(compressionQuality: 1) // 이미지 jpg데이터로 변형
+        imageData = self.img_Profile.image?.jpegData(compressionQuality: 1) // 이미지 jpg데이터로 변형
         
         guard self.imageData != nil else {
             print("널값")
         return
         }
         
-        var urlpath =  "\(Share.urlIP)Cal_recoard.jsp"// 업로드할 url
-        let urlinform = "?user_u_no=\(Share.user_no)&e_weight=\(tf_weight_recoard.text!)&e_fat=\(tf_fat_recoard.text!)&e_muscle=\(tf_muscle_recoard.text!)&e_img=\(filename_img)&e_write=\(textView_write)&e_uploadDay=\(selectday_recoed2!)"
+        var urlpath =  "\(Share.urlIP)mypage_prfile_change.jsp"// 업로드할 url
+        let urlinform = "?user_u_no=\(Share.user_no)&id_change=\(tf_id_Profile.text!)&name_change=\(tf_name_Profile.text!)&introduce_change=\(tf_introduce_Profile.text!)&img_change=\(filename_img)"
         
         urlpath = urlpath + urlinform
         
@@ -191,9 +200,14 @@ class Cal_recoardViewController: UIViewController {
     } //uploadstart
     
     
+
     
     
-} //Cal_recoardViewController
+
+}  // MypageProfileViewController
+    
+}
+
 
 
 // 로딩 실행
@@ -226,4 +240,8 @@ class Loading_Call {
     }
 }
 
-}
+
+
+
+
+

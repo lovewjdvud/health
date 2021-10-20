@@ -10,6 +10,7 @@
 		69082711270ACDAA00799E67 /* Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69082710270ACDAA00799E67 /* Detail_ViewController.swift */; };
 		69082713270ADF9500799E67 /* C_DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */; };
 		6916821A26E9B19800D33663 /* C_memenAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */; };
+		69176363271FB10F0061A4D9 /* MypageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69176362271FB10E0061A4D9 /* MypageProfileViewController.swift */; };
 		6919C24526DCE6FA007693D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C24426DCE6FA007693D4 /* AppDelegate.swift */; };
 		6919C24726DCE6FA007693D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C24626DCE6FA007693D4 /* SceneDelegate.swift */; };
 		6919C24926DCE6FA007693D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6919C24826DCE6FA007693D4 /* ViewController.swift */; };
@@ -61,6 +62,7 @@
 		69082710270ACDAA00799E67 /* Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_ViewController.swift; sourceTree = "<group>"; };
 		69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_DailyTableViewCell.swift; sourceTree = "<group>"; };
 		6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_memenAddTableViewCell.swift; sourceTree = "<group>"; };
+		69176362271FB10E0061A4D9 /* MypageProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageProfileViewController.swift; sourceTree = "<group>"; };
 		6919C24126DCE6FA007693D4 /* health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6919C24426DCE6FA007693D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6919C24626DCE6FA007693D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				6919C24F26DCE6FB007693D4 /* LaunchScreen.storyboard */,
 				6919C25226DCE6FB007693D4 /* Info.plist */,
 				69FB39CC2716E555000339EC /* MypageViewController.swift */,
+				69176362271FB10E0061A4D9 /* MypageProfileViewController.swift */,
 				69F7AB4A271EE71E0036CB84 /* My_FollowViewController.swift */,
 				69F7AB4C271EE74F0036CB84 /* C_MyFollowTableViewCell.swift */,
 				6919C24826DCE6FA007693D4 /* ViewController.swift */,
@@ -166,10 +169,10 @@
 				694949CD270FFA7B00C41C59 /* C_DetailsubTableViewCell.swift */,
 				692E1B8526E5DF2900EAA9F2 /* C_FollowTableViewCell.swift */,
 				69082712270ADF9500799E67 /* C_DailyTableViewCell.swift */,
-				6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */,
 				6916821926E9B19800D33663 /* C_memenAddTableViewCell.swift */,
 				696A748C26DE2A77009051A7 /* Custom.swift */,
 				69CF90B526FDCA9D00CCC574 /* GM_follow_o.swift */,
+				6923AC7C26E0979C00287B22 /* C_AddGroupTableViewCell.swift */,
 				6923AC7E26E09EF300287B22 /* GrouplistDB.swift */,
 				6923AC8426E0B68800287B22 /* Group_gno_DB.swift */,
 				692E1B8726E5FA5F00EAA9F2 /* GM_FollowlistDB.swift */,
@@ -350,6 +353,7 @@
 				694949D027101D5000C41C59 /* Detailsub_DB.swift in Sources */,
 				69E2A3C62704A6F500F22C98 /* GM_make.swift in Sources */,
 				692869D1271ABE5100E9580A /* CommentViewController.swift in Sources */,
+				69176363271FB10F0061A4D9 /* MypageProfileViewController.swift in Sources */,
 				6923AC8126E09F0200287B22 /* DBModel.swift in Sources */,
 				69F7AB55271F11970036CB84 /* btn_myFollow.swift in Sources */,
 				69F7AB4D271EE74F0036CB84 /* C_MyFollowTableViewCell.swift in Sources */,

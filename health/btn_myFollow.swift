@@ -12,8 +12,8 @@ class btn_myFollow: UIButton {
     
     var isActivated : Bool = false
     
-    let activatedImage = UIImage(systemName: "heart.fill")?.withTintColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1)).withRenderingMode(.alwaysOriginal)
-    let normalImage = UIImage(systemName: "heart")?.withTintColor(#colorLiteral(red: 0.2483623028, green: 0.5312670469, blue: 0.9978526235, alpha: 1)).withRenderingMode(.alwaysOriginal)
+    let activatedImage = UIImage(systemName: "checkmark.circle")?.withTintColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).withRenderingMode(.alwaysOriginal)
+    let normalImage = UIImage(systemName: "checkmark.circle")?.withTintColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).withRenderingMode(.alwaysOriginal)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +37,11 @@ class btn_myFollow: UIButton {
     @objc fileprivate func onBtnClicked(_ sender: UIButton){
     
  
-        
+        if self.isActivated {
+        self.backgroundColor = UIColor(#colorLiteral(red: 0.2874339819, green: 0.5118607879, blue: 1, alpha: 1))
+        } else {
+            self.backgroundColor = UIColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        }
         
         self.isActivated.toggle()
         // 애니메이션 처리 하기
@@ -50,8 +54,12 @@ class btn_myFollow: UIButton {
         UIView.animate(withDuration: 0.1, animations: { [weak self] in
             guard let self = self else { return }
             
-            let newImage = self.isActivated ? self.activatedImage : self.normalImage
+           // let newImage = self.isActivated ? self.activatedImage : self.normalImage
+            let newImage = self.activatedImage
+            
             //1. 클릭 되었을때 쪼그라 들기 - 스케일 즉 크기 변경 -> 50퍼센트로 1초동안
+           
+            
             self.transform = self.transform.scaledBy(x: 0.5, y: 0.5)
             self.setImage(newImage, for: .normal)
         }, completion: { _ in

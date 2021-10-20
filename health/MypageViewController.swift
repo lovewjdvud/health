@@ -50,7 +50,7 @@ class MypageViewController: UIViewController {
         super.viewDidLoad()
 
         months = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
-        months_date_array = [1, 2, 3, 4, 5, 6 ,7 ,8 ,9 ,10 , 11 ,12]
+        months_date_array = [1, 2, 3, 4, 5, 6 ,7 ,8 ,9 ,10 ,11 ,12]
         // Do any additional setup after loading the view.
      
         // 이미지 깍기
@@ -115,6 +115,23 @@ class MypageViewController: UIViewController {
         
     }//viewWillAppear
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        if segue.identifier == "sG_profile_change" {
+          
+          let profileView  = segue.destination as! MypageProfileViewController
+          
+            let mypage_item: DBModel = MypagelistItem[0] as! DBModel
+            
+            profileView.id = "\(mypage_item.my_u_id!)"
+            profileView.name = "\(mypage_item.my_u_name!)"
+            profileView.intruduce = "\(mypage_item.my_u_introduce!)"
+            profileView.img_name = "\(mypage_item.my_u_img!)"
+        
+         
+        }
+    }
    
 
     func profileseting()  {
@@ -200,6 +217,7 @@ class MypageViewController: UIViewController {
             
         } //for
         print("\(months_date_diction) ckstlr2")
+        print("\(months_date_array!) ckstlr3")
         setChart(dataPoints: months, values: [1])
     }
     
@@ -211,7 +229,7 @@ class MypageViewController: UIViewController {
        
         for i in months_date_array {
             
-            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(months_date_diction[i]!))
+            let dataEntry = BarChartDataEntry(x: Double(i-1), y: Double(months_date_diction[i]!))
             
             dataEntries.append(dataEntry)
         }

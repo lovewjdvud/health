@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -542,7 +543,6 @@
                                                     </constraints>
                                                     <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                                     <state key="normal" image="checkmark.square" catalog="system">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="71"/>
                                                         </preferredSymbolConfiguration>
@@ -670,12 +670,17 @@
                                                         <constraint firstAttribute="height" constant="79" id="dsa-OE-jqk"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IeX-uv-wsu">
-                                                    <rect key="frame" x="288" y="24" width="106" height="38"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IeX-uv-wsu" customClass="btn_myFollow" customModule="health" customModuleProvider="target">
+                                                    <rect key="frame" x="298" y="32" width="96" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="팔로우">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <imageReference key="image" image="checkmark.circle" catalog="system" symbolScale="medium"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                        </preferredSymbolConfiguration>
                                                     </state>
                                                     <connections>
                                                         <action selector="btn_follow_select:" destination="OJE-4U-gyA" eventType="touchUpInside" id="O0q-eb-Gn9"/>
@@ -1070,7 +1075,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.32210345210000002" green="0.52472195519999998" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="전 사진들과 비교해보시겠어요?">
+                                <state key="normal" title="Upload">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1155,6 +1160,9 @@
                                                 <state key="normal" title="프로필 편집">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="d5u-EZ-qZ1" kind="show" identifier="sG_profile_change" id="dtO-OS-q7P"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5y-sK-mcX" customClass="BarChartView" customModule="Charts">
                                                 <rect key="frame" x="8" y="285" width="398" height="376"/>
@@ -1212,20 +1220,93 @@
             </objects>
             <point key="canvasLocation" x="2844.9275362318845" y="3796.875"/>
         </scene>
-        <!--View Controller-->
+        <!--Mypage Profile View Controller-->
         <scene sceneID="ssa-vE-3LB">
             <objects>
-                <viewController id="d5u-EZ-qZ1" sceneMemberID="viewController">
+                <viewController id="d5u-EZ-qZ1" customClass="MypageProfileViewController" customModule="health" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8K-dl-NOZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아이디" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqj-PZ-CvO">
+                                <rect key="frame" x="20" y="282" width="81" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TWU-zI-yZK">
+                                <rect key="frame" x="142" y="290" width="252" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tf_id_Profile:" destination="rAE-GI-GRX" eventType="editingDidEnd" id="YDX-X3-p5n"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjs-DI-wXS">
+                                <rect key="frame" x="20" y="364" width="81" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iCL-wI-fOi">
+                                <rect key="frame" x="142" y="372" width="252" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1pu-9k-t7M" customClass="image_gesture" customModule="health" customModuleProvider="target">
+                                <rect key="frame" x="157" y="136" width="99" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="소개글" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Ie-64B">
+                                <rect key="frame" x="20" y="448" width="81" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.34105334990000002" green="0.50626343600000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KaS-cG-Z05">
+                                <rect key="frame" x="142" y="456" width="252" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOs-c9-dwv">
+                                <rect key="frame" x="203" y="175" width="66" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="plus.rectangle.on.folder" catalog="system"/>
+                                <connections>
+                                    <action selector="btn_img_change:" destination="d5u-EZ-qZ1" eventType="touchUpInside" id="ovt-nR-gRk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-Bd-QwY">
+                                <rect key="frame" x="73" y="628" width="266" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="수정 완료"/>
+                                <connections>
+                                    <action selector="finishy_btn:" destination="d5u-EZ-qZ1" eventType="touchUpInside" id="914-ch-X0H"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="F2d-Zn-dYy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="o2p-QL-1z1"/>
+                    <connections>
+                        <outlet property="finishy_btn" destination="4lo-Bd-QwY" id="aBi-nJ-ECg"/>
+                        <outlet property="img_Profile" destination="1pu-9k-t7M" id="Vny-us-Jgy"/>
+                        <outlet property="tf_id_Profile" destination="TWU-zI-yZK" id="IdD-vP-mus"/>
+                        <outlet property="tf_introduce_Profile" destination="KaS-cG-Z05" id="xTl-NB-TB9"/>
+                        <outlet property="tf_name_Profile" destination="iCL-wI-fOi" id="h0i-xk-7vO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ve-ES-xIB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="rAE-GI-GRX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5190" y="3515"/>
+            <point key="canvasLocation" x="3831.884057971015" y="3885.9375"/>
         </scene>
         <!--Custom-->
         <scene sceneID="aHu-B4-5Q3">
@@ -1310,6 +1391,7 @@
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

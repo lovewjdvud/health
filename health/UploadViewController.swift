@@ -129,7 +129,14 @@ class UploadViewController: UIViewController, UITextViewDelegate {
     // 사진 업로드 과정
     func uploadstart()  {
         
-        filename_img = "\(currentDate)\(Share.user_no).jpg"
+           let date = Date()
+           let dateFormatter_cal = DateFormatter()
+           dateFormatter_cal.dateFormat = "yyyy-MM-HH:mm"
+           dateFormatter_cal.timeZone = TimeZone.current
+          
+          let currentDate_ = (dateFormatter_cal.string(from: date))
+           
+        filename_img = "\(currentDate_)\(Share.user_no).jpg"
         textView_write = textView_upload.text! // 텍스트뷰에 쓴글 가져오기
         print("\(textView_write) 윤희지 텍스트")
         guard  img_upload.image != nil else {  // 이미지 널값 구분
